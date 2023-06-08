@@ -15,10 +15,10 @@ Create a full-stack web application that allows a user to build a calendar and p
 # Primary Functionality
 
 ## Data Entities
-1. User
-2. Calendar
-3. Days
-4. Exercises
+1. Calendar
+2. Days
+3. Exercises
+4. User (Stretch)
 
 ## User Calendar
 1. Monday through Friday Calendar Cards
