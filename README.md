@@ -1,5 +1,5 @@
 # Workout-Helper
-A full-stack workout calendar app
+A full-stack workout manager app!
 
 ![Gym Image](https://www.hussle.com/blog/wp-content/uploads/2020/12/Gym-structure-1080x675.png)
 
@@ -19,6 +19,7 @@ Create a full-stack web application that allows a user to build a calendar and p
 2. Days
 3. Exercises
 4. User (Stretch)
+5. User Preferred Exercises (Stretch)
 
 ## Calendar
 1. Monday through Friday Calendar Cards
@@ -46,6 +47,10 @@ Create a full-stack web application that allows a user to build a calendar and p
 ## User Database
 1. A user should able able to login either through Google OAuth or a username/password
 2. Each User should have a saved calendar that they can continue to fully CRUD that is saved from previous entries
+3. A user should be able to save exercises as preferred exercises
+
+## Preferred Exercises
+1. A user should be able to generate a workout routine for a particular day that randomizes their preferred exercises and picks a selection
 
 
 
