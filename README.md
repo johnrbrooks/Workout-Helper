@@ -32,7 +32,7 @@ Create a full-stack web application that allows a user to build a calendar and p
 3. A user should be able to update new workouts to the database with these parameters
 4. A user should be able to delete new workouts from the database with these parameters
 
-## Search Functionality
+## Search
 1. Find workouts within the database based on particular criteria
 2. Add/remove those workouts to specific days on the calendar
 
