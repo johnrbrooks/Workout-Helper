@@ -20,7 +20,7 @@ Create a full-stack web application that allows a user to build a calendar and p
 3. Exercises
 4. User (Stretch)
 
-## User Calendar
+## Calendar
 1. Monday through Friday Calendar Cards
 2. Each Card allows you to populate it with workouts you'd like to do on that day
 3. Every individual workout card allows you to open it and see a description of the workout and an image/gif of how to do it
