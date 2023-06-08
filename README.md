@@ -7,7 +7,7 @@ A full-stack workout calendar app
 [WireFrame]()
 
 ## ERD
-[ERD]()
+[ERD](https://lucid.app/lucidchart/91d1a77a-28ff-4be4-bccf-d679a9657d71/edit?beaconFlowId=574B8B2BAE54D9DD&invitationId=inv_c8d49fb4-bb18-405e-b3f5-3e6c0d89f830&page=0_0#)
 
 ## Application Goal
 Create a full-stack web application that allows a user to build a calendar and populate it with chosen workouts to do on a given day based on a database of workouts.
