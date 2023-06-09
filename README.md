@@ -3,14 +3,17 @@ A full-stack workout manager app!
 
 ![Gym Image](https://www.hussle.com/blog/wp-content/uploads/2020/12/Gym-structure-1080x675.png)
 
+## Application Goal
+Create a full-stack web application that allows a user to build a calendar and populate it with chosen or randomized workouts to do on a given day based on a database of workouts.
+
 ## WireFrame
 [WireFrame](https://www.figma.com/file/jwINMRSlwgrTwwPzc3fgWT/Workout-Helper-WireFrame?type=design&node-id=0-1&t=fHSbV9vZk2kDJvVC-0)
 
 ## ERD
 [ERD](https://lucid.app/lucidchart/91d1a77a-28ff-4be4-bccf-d679a9657d71/edit?beaconFlowId=574B8B2BAE54D9DD&invitationId=inv_c8d49fb4-bb18-405e-b3f5-3e6c0d89f830&page=0_0#)
 
-## Application Goal
-Create a full-stack web application that allows a user to build a calendar and populate it with chosen or randomized workouts to do on a given day based on a database of workouts.
+## Trello Board
+[Trello](https://trello.com/b/CZ1hU6sU/my-fitness-calendar)
 
 # Primary Functionality
 
