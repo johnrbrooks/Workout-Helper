@@ -10,7 +10,7 @@ A full-stack workout manager app!
 [ERD](https://lucid.app/lucidchart/91d1a77a-28ff-4be4-bccf-d679a9657d71/edit?beaconFlowId=574B8B2BAE54D9DD&invitationId=inv_c8d49fb4-bb18-405e-b3f5-3e6c0d89f830&page=0_0#)
 
 ## Application Goal
-Create a full-stack web application that allows a user to build a calendar and populate it with chosen workouts to do on a given day based on a database of workouts.
+Create a full-stack web application that allows a user to build a calendar and populate it with chosen or randomized workouts to do on a given day based on a database of workouts.
 
 # Primary Functionality
 
@@ -27,11 +27,11 @@ Create a full-stack web application that allows a user to build a calendar and p
 3. Every individual workout card allows you to open it and see a description of the workout and an image/gif of how to do it
 4. This will require full front-end CRUD implementation as you will need to be able to add workouts, read workouts, update workout choices, and delete workouts from the page
 
-## Workout Database
-1. Each workout object should have a title/name, an image/gif of how to do the workout, a description, a suggested reps count based on beginner-advanced, and equipment necessary.
-2. A user should be able to add new workouts to the database with these parameters 
-3. A user should be able to update new workouts to the database with these parameters
-4. A user should be able to delete new workouts from the database with these parameters
+## Exercise Database
+1. Each exercise object should have a title/name, an image/gif of how to do the exercise, a description, a suggested reps count based on beginner-advanced, and equipment necessary.
+2. A user should be able to add new exercises to the database with these parameters 
+3. A user should be able to update new exercises to the database with these parameters
+4. A user should be able to delete new exercises from the database with these parameters
 
 ## Search
 1. Find workouts within the database based on particular criteria
