@@ -1,26 +1,74 @@
-const { Phone } = require('../models')
-const phoneSchema = require('../models/phone')
+const { Exercises, Users } = require('../Models')
+const exerciseSchema = require('../Models/exercise')
+const userSchema = require('../Models/user')
 
 
-const getPhones = async (req, res)=> {
-    const cellphones = await Phone.find()
-    res.json(cellphones)
+const getExercises = async (req, res) => {
+    const exercisesAll = await Exercises.find()
+    res.json(exercisesAll)
 }
 
-const createPhone = async (req, res) => {
-    try {
-        const phone = await new Phone(req.body)
-        await phone.save()
-        return res.status(201).json({
-            phone,
-        });
-    } catch (error) {
+const getArmsExercises = async (req, res) => {
+    try{
+        const armExercises = await Exercises.find({muscle_category: 'Arms'})
+        res.json(armExercises)
+    }catch (error) {
         return res.status(500).json({ error: error.message })
     }
 }
 
+const getChestExercises = async (req, res) => {
+    try{
+        const chestExercises = await Exercises.find({muscle_category: 'Chest'})
+        res.json(chestExercises)
+    }catch (error) {
+        return res.status(500).json({ error: error.message })
+    }
+}
+const getShouldersExercises = async (req, res) => {
+    try{
+        const shoulderExercises = await Exercises.find({muscle_category: 'Shoulders'})
+        res.json(shoulderExercises)
+    }catch (error) {
+        return res.status(500).json({ error: error.message })
+    }
+}
+
+const getLegsExercises = async (req, res) => {
+    try{
+        const legExercises = await Exercises.find({muscle_category: 'Legs'})
+        res.json(legExercises)
+    }catch (error) {
+        return res.status(500).json({ error: error.message })
+    }
+}
+
+const getAbsExercises = async (req, res) => {
+    try{
+        const abExercises = await Exercises.find({muscle_category: 'Abs'})
+        res.json(abExercises)
+    }catch (error) {
+        return res.status(500).json({ error: error.message })
+    }
+}
+
+/* const createUser = async (req, res) => {
+    try {
+        const user = await new user(req.body)
+        await Users.save()
+        return res.status(201).json({
+            user,
+        });
+    } catch (error) {
+        return res.status(500).json({ error: error.message })
+    }
+} */
+
 module.exports = {
-    getPhones,
-    getPhonesById,
-    updatePhone
+    getExercises,
+    getArmsExercises,
+    getChestExercises,
+    getShouldersExercises,
+    getLegsExercises,
+    getAbsExercises,
 }

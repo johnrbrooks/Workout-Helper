@@ -1,17 +1,7 @@
-const express = require('express');
-const Router = express.Router()
-const MakeRouter = require('./makesRouter')
-const PhoneRouter = require('./phonesRouter')
-const PlatformRouter = require('./platformsRouter')
-const iosRouter = require('./iosRouter')
-const androidRouter = require('./androidRouter')
+const Router = require('express').Router()
 
+const ExerciseRouter = require('./exercisesRouter.js')
 
-Router.use('/makes', MakeRouter)
-Router.use('/phones', PhoneRouter)
-Router.use('/platforms', PlatformRouter)
-Router.use('/ios', iosRouter)
-Router.use('/android', androidRouter)
-
+Router.use('/exercises', ExerciseRouter)
 
 module.exports = Router
