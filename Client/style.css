@@ -458,7 +458,7 @@ body {
     
     .muscle-group {
         padding: 6rem;
+        max-width: 18rem;
+        min-width: 18rem;
     }
-
-
 }
