@@ -1,0 +1,184 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(45deg,#2F3E43, #111719);
+    color: white;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* PAGE ADJUSTERS */
+
+.nav-container {
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1.5rem 0;
+}
+
+.user-login-page {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.create-account-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.calendar-page {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.exercises-group-page {
+    display: none;
+}
+
+.exercises-display-page {
+    display: none;
+}
+
+.footer-container {
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1.5rem 0;
+    /* margin-top: auto; */
+}
+
+/* PAGE ADJUSTERS END */
+
+.page-title {
+    font-size: 2rem;
+}
+
+.credits {
+    font-weight: 700;
+}
+
+#hamburger {
+    display: none;
+}
+
+.calendar-button {
+    display: none;
+    padding: 0.7rem 3rem;
+    background-color: #0C2AC7;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.calendar-button:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    background-color: #2443de;
+}
+
+.login-form {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    row-gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2.25rem;
+    margin-bottom: 1rem;
+}
+
+.username-label {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-right: 0.5rem;
+}
+
+.username-input {
+    height: 2rem;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 1.5rem;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-button {
+    padding: 0.7rem 4rem;
+    background-color: #0C2AC7;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.login-button:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    background-color: #2443de;
+}
+
+.create-account-button {
+    padding: 0.7rem 2.5rem;
+    background-color: #4CA82B;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.create-account-button:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    background-color: #66e03a;
+}
+
+.back-arrow {
+    background-color: black;
+    padding: 0.5rem 14rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.fa-arrow-left {
+    padding: 1rem;
+}
+
+.fa-arrow-left:hover {
+    cursor: pointer;
+}
+
+.create-account-title {
+    margin-bottom: 2rem;
+}
+
+

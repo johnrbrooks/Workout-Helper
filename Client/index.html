@@ -4,10 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Fitness Calendar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/c9dab565ca.js" crossorigin="anonymous"></script>
+    <script defer src="script.js"></script>
 </head>
 <body>
-    
+    <!--NAV-->
+    <nav class="nav-container">
+        <h1 class="page-title">My Fitness Calendar</h1>
+        <i class="fa-solid fa-bars fa-2xl" id="hamburger" style="color: #ffffff;"></i>    
+    </nav>
+    <!--USER LOGIN PAGE-->
+    <div class="user-login-page">
+        <form action="" class="login-form">
+            <p class="username-label">Username:</p>
+            <input class="username-input" type="text">
+            <p class="username-label">Password:</p>
+            <input class="username-input" type="text">
+        </form>
+        <div class="buttons-container">
+            <button class="login-button" id="loginButton">LOG IN</button>
+            <button class="create-account-button" id="createAccountButton">CREATE ACCOUNT</button>
+        </div>
+    </div>
+    <!--CREATE ACCOUNT PAGE-->
+        <div class="create-account-page">
+            <div class="back-arrow">
+                <i class="fa-sharp fa-solid fa-arrow-left fa-2xl" style="color: #ffffff;"></i>
+            </div>
+            <h1 class="create-account-title">Fill out the form below!</h1>
+            <form action="" class="login-form">
+                <p class="username-label">First Name:</p>
+                <input class="username-input" type="text" required>
+                <p class="username-label">Username:</p>
+                <input class="username-input" type="text"required>
+                <p class="username-label">Password:</p>
+                <input class="username-input" type="text" required>
+            </form>
+            <button class="create-account-button" id="createAccount">Create Account</button>
+        </div>
+    <!--CALENDAR PAGE-->
+    <div class="calendar-page">
+
+    </div>
+    <!--EXERCISES GROUPS PAGE-->
+    <div class="exercises-group-page">
+
+    </div>
+    <!--EXERCISES DISPLAY PAGE-->
+    <div class="exercises-display-page">
+
+    </div>
+    <!--FOOTER-->
+    <footer class="footer-container">
+        <a href="https://github.com/quark934/Workout-Helper"><i class="fa-brands fa-square-github fa-2xl" style="color: #ffffff;"></i></a>
+        <button class="calendar-button" id="calendarButton">Calendar</button>
+        <p class="credits">Created by JB</p>
+    </footer> 
+
 </body>
 </html>
