@@ -211,6 +211,9 @@ body {
     margin: 0.5rem 0;
     padding: 0.3rem 5rem;
     border-radius: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
 
 .exercise:hover {
@@ -218,6 +221,21 @@ body {
     background-color: #9ebaff; 
     transform: translateY(-2px);
 }
+
+.fa-square-check {
+    padding: 0.75rem 0.25rem;
+    position: absolute;
+    right: 0;
+}
+
+.fa-square-xmark {
+    display: none;
+    padding: 0.75rem 0.25rem;
+    position: absolute;
+    right: 0;
+}
+
+
 
 .exercises-monday, 
 .exercises-tuesday, 

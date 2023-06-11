@@ -77,16 +77,37 @@ function showExercises(e) {
     } 
 }
 
+const completedButtons = document.querySelectorAll('.fa-square-check')
 const exerciseItems = document.querySelectorAll('.exercise')
+const uncheckButtons = document.querySelectorAll('.fa-square-xmark')
+const checkButton = document.querySelector('.fa-square-check')
 
-exerciseItems.forEach(item => {
-    item.addEventListener('click', (e) => {
-        let selectedExercise = e.target
-        if(selectedExercise.style.backgroundColor === 'rgb(76, 168, 43)') {
-            selectedExercise.style.backgroundColor = 'rgb(116, 156, 255)'
-        } else {
-            selectedExercise.style.backgroundColor = 'rgb(76, 168, 43)'
-        }
-    });
-});
+$(uncheckButtons).hide()
+
+let selectedExerciseCheck;
+let selectedExerciseUncheck
+let selectedExercise;
+
+completedButtons.forEach((button, index) => {
+    button.addEventListener('click', (e) => {
+        selectedExerciseCheck = e.target
+        selectedExercise = e.target.closest('div')
+        selectedExerciseUncheck = uncheckButtons[index]
+        $(selectedExercise).data('check-button', selectedExerciseCheck)
+        completeExercise()
+    })
+})
+
+function completeExercise() {
+    $(selectedExercise).css('background-color', 'rgb(76, 168, 43)')
+    $(selectedExerciseCheck).hide()
+    $(selectedExerciseUncheck).show().on('click', (e) => {
+        selectedExercise = $(e.target).closest('div')
+        selectedExerciseCheck = $(selectedExercise).data('check-button')
+        selectedExerciseUncheck = $(e.target)
+        $(selectedExercise).css('background-color', 'rgb(116, 156, 255)')
+        $(selectedExerciseUncheck).hide()
+        $(selectedExerciseCheck).show()
+    })
+}
 
