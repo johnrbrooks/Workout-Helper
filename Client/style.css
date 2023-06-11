@@ -32,7 +32,7 @@ body {
 }
 
 .user-login-page {
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -62,7 +62,7 @@ body {
 }
 
 .exercises-group-page {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -148,10 +148,12 @@ body {
 .nav-item {
     display: block;
     width: 100%;
-    max-width: 200px;
-    margin: 0 auto 16px;
+    max-width: 300px;
+    margin: 0 auto 50px;
+    border-radius: 10px;
     text-align: center;
-    padding: 1rem 3rem;
+    padding: 1rem 5rem;
+    white-space: nowrap;
     background-color: #0C2AC7;
 }
 
