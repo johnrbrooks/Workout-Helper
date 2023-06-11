@@ -25,6 +25,46 @@ $('#backArrow1').click(function goBackToLogin() {
         menuContainer.classList.toggle('is-active')
     })
 
+    const calendarButton = document.querySelector('#Calendar')
+    const exercisesButton = document.querySelector('#Exercises')
+    const logOutButton = document.querySelector('#Log-Out')
+    const userLoginPage = document.querySelector('.user-login-page')
+    const createAccountPage = document.querySelector('.create-account-page')
+    const calendarPage = document.querySelector('.calendar-page')
+    const exerciseGroupsPage = document.querySelector('.exercises-group-page')
+    const exercisesDisplayPage = document.querySelector('.exercises-display-page')
+
+    calendarButton.addEventListener('click', () => {
+        menuButton.classList.remove('is-active')
+        menuContainer.classList.remove('is-active')
+        userLoginPage.style.display = 'none'
+        createAccountPage.style.display = 'none'
+        exerciseGroupsPage.style.display = 'none'
+        exercisesDisplayPage.style.display = 'none'
+        calendarPage.style.display = 'flex'
+    })
+
+    exercisesButton.addEventListener('click', () => {
+        menuButton.classList.remove('is-active')
+        menuContainer.classList.remove('is-active')
+        userLoginPage.style.display = 'none'
+        createAccountPage.style.display = 'none'
+        exercisesDisplayPage.style.display = 'none'
+        calendarPage.style.display = 'none'
+        exerciseGroupsPage.style.display = 'flex'
+    })
+
+    logOutButton.addEventListener('click', () => {
+        menuButton.classList.remove('is-active')
+        menuContainer.classList.remove('is-active')
+        createAccountPage.style.display = 'none'
+        exercisesDisplayPage.style.display = 'none'
+        calendarPage.style.display = 'none'
+        exerciseGroupsPage.style.display = 'none'
+        userLoginPage.style.display = 'flex'
+    })
+
+
 // CALENDAR PAGE
 
 const dayContainers = document.querySelectorAll('.day-label')
@@ -88,7 +128,7 @@ function showExercises(e) {
 
 const completedButtons = document.querySelectorAll('.fa-square-check')
 const exerciseItems = document.querySelectorAll('.exercise')
-const uncheckButtons = document.querySelectorAll('.fa-square-xmark')
+const uncheckButtons = document.querySelectorAll('.fa-xmark')
 const checkButton = document.querySelector('.fa-square-check')
 
 $(uncheckButtons).hide()
@@ -121,4 +161,10 @@ function completeExercise() {
 }
 
 // EXERCISES GROUPS PAGE
+
+const muscleGroupButtons = document.querySelectorAll('.muscle-group')
+
+muscleGroupButtons.forEach(button => {
+    button.addEventListener('click', showExercises)
+})
 
