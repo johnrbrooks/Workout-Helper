@@ -21,8 +21,7 @@ $('#backArrow1').click(function goBackToLogin() {
 const dayContainers = document.querySelectorAll('.day-label')
 
 dayContainers.forEach(day => {
-    day.addEventListener('click', (e) => showExercises(e) 
-    )
+    day.addEventListener('click', (e) => showExercises(e))
 })
 
 function showExercises(e) {
@@ -75,7 +74,7 @@ function showExercises(e) {
             }            break
         default:
             break
-    }
+    } 
 }
 
 const exerciseItems = document.querySelectorAll('.exercise')
