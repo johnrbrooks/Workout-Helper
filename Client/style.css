@@ -24,19 +24,25 @@ body {
 }
 
 .user-login-page {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-}
-
-.create-account-page {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: auto;
+    background: linear-gradient(45deg, rgb(12, 12, 12), rgb(59, 59, 59));
+    box-shadow: 1px 2px 5px 5px rgb(135, 135, 135);
+    padding: 2rem 1rem 1rem 1rem;
+}
+
+.create-account-page {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    background: linear-gradient(45deg, rgb(12, 12, 12), rgb(59, 59, 59));
+    box-shadow: 1px 2px 5px 5px rgb(135, 135, 135);
+    padding: 1rem;
 }
 
 .calendar-page {
@@ -61,7 +67,6 @@ body {
     align-items: center;
     justify-content: space-evenly;
     padding: 1.5rem 0;
-    /* margin-top: auto; */
 }
 
 /* PAGE ADJUSTERS END */
@@ -162,15 +167,16 @@ body {
 }
 
 .back-arrow {
-    background-color: black;
-    padding: 0.5rem 14rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    padding: 0.5rem 16rem;
+    margin-bottom: 2rem;
+    position: relative;
 }
 
 .fa-arrow-left {
     padding: 1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .fa-arrow-left:hover {
@@ -181,4 +187,39 @@ body {
     margin-bottom: 2rem;
 }
 
+.day-container {
+    width: 20rem;
+    text-align: center;
+    margin: 1.5rem 0;
+    background-color: rgb(45, 100, 152);
+    border-radius: 10px;
+}
 
+.day-container:hover {
+    cursor: pointer;
+    background-color: rgb(75, 132, 185);
+    transform: translateY(-2px);
+}
+
+.exercise {
+    text-align: center;
+    background-color: #749cff;
+    margin: 0.5rem 0;
+    padding: 0.3rem 5rem;
+    border-radius: 10px;
+}
+
+.exercise:hover {
+    cursor: pointer;
+    background-color: #9ebaff; 
+    transform: translateY(-2px);
+}
+
+.exercises-monday, 
+.exercises-tuesday, 
+.exercises-wednesday, 
+.exercises-thursday, 
+.exercises-friday, 
+.exercises-saturday, .exercises-sunday {
+    display: none;
+}
