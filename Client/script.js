@@ -16,6 +16,15 @@ $('#backArrow1').click(function goBackToLogin() {
     $('.user-login-page').css('display', 'flex')
 })
 
+// HAMBURGER MENU
+    const menuButton = document.querySelector('#hamburger')
+    const menuContainer = document.querySelector('.menu-container')
+
+    menuButton.addEventListener('click', () => {
+        menuButton.classList.toggle('is-active')
+        menuContainer.classList.toggle('is-active')
+    })
+
 // CALENDAR PAGE
 
 const dayContainers = document.querySelectorAll('.day-label')
@@ -110,4 +119,6 @@ function completeExercise() {
         $(selectedExerciseCheck).show()
     })
 }
+
+// EXERCISES GROUPS PAGE
 
