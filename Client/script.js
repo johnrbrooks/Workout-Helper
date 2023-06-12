@@ -19,6 +19,7 @@ $('#backArrow1').click(function goBackToLogin() {
 // SELECT DAY MODAL
 
 $('.day-select-modal').hide()
+$('.exercise-info-modal').hide()
 
 // HAMBURGER MENU
     const menuButton = document.querySelector('#hamburger')
@@ -276,6 +277,52 @@ async function showChest() {
                 $('.day-select-modal').hide()
             })
         })
+        instructionLink.addEventListener('click', async (e) => {
+            selectedExercise = e.target
+            identifier = selectedExercise.previousElementSibling.innerText
+            const getExerciseData = await axios.get(`http://localhost:3001/exercises/${identifier}`)
+
+            let exerciseData = getExerciseData.data
+
+            const instructionsList = document.querySelector('.instructions')
+
+            function removeListItems() {
+                if(instructionsList) {
+                    while(instructionsList.firstChild) {
+                        instructionsList.removeChild(instructionsList.firstChild)
+                    }
+                }
+            }
+
+            removeListItems()
+
+            $('.exercise-info-modal').show()
+
+            let instructionsCount = exerciseData[0].instructions.length
+
+            for(let i = 0; i < instructionsCount; i++) {
+                const instructionItem = document.createElement('li')
+                instructionsList.appendChild(instructionItem)
+                instructionItem.classList.add('instruction-list-item')
+            }
+
+            const instructionItems = document.querySelectorAll('.instruction-list-item')
+
+            instructionItems.forEach((item, index) => {
+                item.innerText = `${exerciseData[0].instructions[index]}`
+            })
+
+            $('.exercise-title').text(`${exerciseData[0].name}`)
+            $('.demo-image').attr('src', `${exerciseData[0].image}`)
+            $('.reps').text(`Suggested Reps: ${exerciseData[0].reps}`)
+            $('.equipment-info').text(`Equipment required? ${exerciseData[0].equipment}`)
+            $('.primary-muscle').text(`Primary Muscle Group: ${exerciseData[0].primary_muscle_id}`)
+            $('.secondary-muscle').text(`Secondary Muscle Group: ${exerciseData[0].secondary_muscle_id}`)
+            $('.muscle-group-image').attr('src', `${exerciseData[0].muscle_image}`)
+            $('.modal-close-button').click(() => {
+                $('.exercise-info-modal').hide()
+            })
+        })
     })
 }
 
@@ -328,7 +375,53 @@ async function showArms() {
             $('.modal-close-button').click(() => {
                 $('.day-select-modal').hide()
             })
-        })    
+        }) 
+        instructionLink.addEventListener('click', async (e) => {
+            selectedExercise = e.target
+            identifier = selectedExercise.previousElementSibling.innerText
+            const getExerciseData = await axios.get(`http://localhost:3001/exercises/${identifier}`)
+
+            let exerciseData = getExerciseData.data
+
+            const instructionsList = document.querySelector('.instructions')
+
+            function removeListItems() {
+                if(instructionsList) {
+                    while(instructionsList.firstChild) {
+                        instructionsList.removeChild(instructionsList.firstChild)
+                    }
+                }
+            }
+
+            removeListItems()
+
+            $('.exercise-info-modal').show()
+
+            let instructionsCount = exerciseData[0].instructions.length
+
+            for(let i = 0; i < instructionsCount; i++) {
+                const instructionItem = document.createElement('li')
+                instructionsList.appendChild(instructionItem)
+                instructionItem.classList.add('instruction-list-item')
+            }
+
+            const instructionItems = document.querySelectorAll('.instruction-list-item')
+
+            instructionItems.forEach((item, index) => {
+                item.innerText = `${exerciseData[0].instructions[index]}`
+            })
+
+            $('.exercise-title').text(`${exerciseData[0].name}`)
+            $('.demo-image').attr('src', `${exerciseData[0].image}`)
+            $('.reps').text(`Suggested Reps: ${exerciseData[0].reps}`)
+            $('.equipment-info').text(`Equipment required? ${exerciseData[0].equipment}`)
+            $('.primary-muscle').text(`Primary Muscle Group: ${exerciseData[0].primary_muscle_id}`)
+            $('.secondary-muscle').text(`Secondary Muscle Group: ${exerciseData[0].secondary_muscle_id}`)
+            $('.muscle-group-image').attr('src', `${exerciseData[0].muscle_image}`)
+            $('.modal-close-button').click(() => {
+                $('.exercise-info-modal').hide()
+            })
+        })   
     })
 }
 
@@ -381,7 +474,53 @@ async function showShoulders() {
             $('.modal-close-button').click(() => {
                 $('.day-select-modal').hide()
             })
-        })    
+        }) 
+        instructionLink.addEventListener('click', async (e) => {
+            selectedExercise = e.target
+            identifier = selectedExercise.previousElementSibling.innerText
+            const getExerciseData = await axios.get(`http://localhost:3001/exercises/${identifier}`)
+
+            let exerciseData = getExerciseData.data
+
+            const instructionsList = document.querySelector('.instructions')
+
+            function removeListItems() {
+                if(instructionsList) {
+                    while(instructionsList.firstChild) {
+                        instructionsList.removeChild(instructionsList.firstChild)
+                    }
+                }
+            }
+
+            removeListItems()
+
+            $('.exercise-info-modal').show()
+
+            let instructionsCount = exerciseData[0].instructions.length
+
+            for(let i = 0; i < instructionsCount; i++) {
+                const instructionItem = document.createElement('li')
+                instructionsList.appendChild(instructionItem)
+                instructionItem.classList.add('instruction-list-item')
+            }
+
+            const instructionItems = document.querySelectorAll('.instruction-list-item')
+
+            instructionItems.forEach((item, index) => {
+                item.innerText = `${exerciseData[0].instructions[index]}`
+            })
+
+            $('.exercise-title').text(`${exerciseData[0].name}`)
+            $('.demo-image').attr('src', `${exerciseData[0].image}`)
+            $('.reps').text(`Suggested Reps: ${exerciseData[0].reps}`)
+            $('.equipment-info').text(`Equipment required? ${exerciseData[0].equipment}`)
+            $('.primary-muscle').text(`Primary Muscle Group: ${exerciseData[0].primary_muscle_id}`)
+            $('.secondary-muscle').text(`Secondary Muscle Group: ${exerciseData[0].secondary_muscle_id}`)
+            $('.muscle-group-image').attr('src', `${exerciseData[0].muscle_image}`)
+            $('.modal-close-button').click(() => {
+                $('.exercise-info-modal').hide()
+            })
+        })   
     })
 }
 
@@ -434,7 +573,53 @@ async function showBack() {
             $('.modal-close-button').click(() => {
                 $('.day-select-modal').hide()
             })
-        })    
+        }) 
+        instructionLink.addEventListener('click', async (e) => {
+            selectedExercise = e.target
+            identifier = selectedExercise.previousElementSibling.innerText
+            const getExerciseData = await axios.get(`http://localhost:3001/exercises/${identifier}`)
+
+            let exerciseData = getExerciseData.data
+
+            const instructionsList = document.querySelector('.instructions')
+
+            function removeListItems() {
+                if(instructionsList) {
+                    while(instructionsList.firstChild) {
+                        instructionsList.removeChild(instructionsList.firstChild)
+                    }
+                }
+            }
+
+            removeListItems()
+
+            $('.exercise-info-modal').show()
+
+            let instructionsCount = exerciseData[0].instructions.length
+
+            for(let i = 0; i < instructionsCount; i++) {
+                const instructionItem = document.createElement('li')
+                instructionsList.appendChild(instructionItem)
+                instructionItem.classList.add('instruction-list-item')
+            }
+
+            const instructionItems = document.querySelectorAll('.instruction-list-item')
+
+            instructionItems.forEach((item, index) => {
+                item.innerText = `${exerciseData[0].instructions[index]}`
+            })
+
+            $('.exercise-title').text(`${exerciseData[0].name}`)
+            $('.demo-image').attr('src', `${exerciseData[0].image}`)
+            $('.reps').text(`Suggested Reps: ${exerciseData[0].reps}`)
+            $('.equipment-info').text(`Equipment required? ${exerciseData[0].equipment}`)
+            $('.primary-muscle').text(`Primary Muscle Group: ${exerciseData[0].primary_muscle_id}`)
+            $('.secondary-muscle').text(`Secondary Muscle Group: ${exerciseData[0].secondary_muscle_id}`)
+            $('.muscle-group-image').attr('src', `${exerciseData[0].muscle_image}`)
+            $('.modal-close-button').click(() => {
+                $('.exercise-info-modal').hide()
+            })
+        })   
     })
 }
 
@@ -487,7 +672,53 @@ async function showLegs() {
             $('.modal-close-button').click(() => {
                 $('.day-select-modal').hide()
             })
-        })    
+        })  
+        instructionLink.addEventListener('click', async (e) => {
+            selectedExercise = e.target
+            identifier = selectedExercise.previousElementSibling.innerText
+            const getExerciseData = await axios.get(`http://localhost:3001/exercises/${identifier}`)
+
+            let exerciseData = getExerciseData.data
+
+            const instructionsList = document.querySelector('.instructions')
+
+            function removeListItems() {
+                if(instructionsList) {
+                    while(instructionsList.firstChild) {
+                        instructionsList.removeChild(instructionsList.firstChild)
+                    }
+                }
+            }
+
+            removeListItems()
+
+            $('.exercise-info-modal').show()
+
+            let instructionsCount = exerciseData[0].instructions.length
+
+            for(let i = 0; i < instructionsCount; i++) {
+                const instructionItem = document.createElement('li')
+                instructionsList.appendChild(instructionItem)
+                instructionItem.classList.add('instruction-list-item')
+            }
+
+            const instructionItems = document.querySelectorAll('.instruction-list-item')
+
+            instructionItems.forEach((item, index) => {
+                item.innerText = `${exerciseData[0].instructions[index]}`
+            })
+
+            $('.exercise-title').text(`${exerciseData[0].name}`)
+            $('.demo-image').attr('src', `${exerciseData[0].image}`)
+            $('.reps').text(`Suggested Reps: ${exerciseData[0].reps}`)
+            $('.equipment-info').text(`Equipment required? ${exerciseData[0].equipment}`)
+            $('.primary-muscle').text(`Primary Muscle Group: ${exerciseData[0].primary_muscle_id}`)
+            $('.secondary-muscle').text(`Secondary Muscle Group: ${exerciseData[0].secondary_muscle_id}`)
+            $('.muscle-group-image').attr('src', `${exerciseData[0].muscle_image}`)
+            $('.modal-close-button').click(() => {
+                $('.exercise-info-modal').hide()
+            })
+        })  
     })
 }
 
@@ -540,7 +771,53 @@ async function showAbs() {
             $('.modal-close-button').click(() => {
                 $('.day-select-modal').hide()
             })
-        })    
+        })  
+        instructionLink.addEventListener('click', async (e) => {
+            selectedExercise = e.target
+            identifier = selectedExercise.previousElementSibling.innerText
+            const getExerciseData = await axios.get(`http://localhost:3001/exercises/${identifier}`)
+
+            let exerciseData = getExerciseData.data
+
+            const instructionsList = document.querySelector('.instructions')
+
+            function removeListItems() {
+                if(instructionsList) {
+                    while(instructionsList.firstChild) {
+                        instructionsList.removeChild(instructionsList.firstChild)
+                    }
+                }
+            }
+
+            removeListItems()
+
+            $('.exercise-info-modal').show()
+
+            let instructionsCount = exerciseData[0].instructions.length
+
+            for(let i = 0; i < instructionsCount; i++) {
+                const instructionItem = document.createElement('li')
+                instructionsList.appendChild(instructionItem)
+                instructionItem.classList.add('instruction-list-item')
+            }
+
+            const instructionItems = document.querySelectorAll('.instruction-list-item')
+
+            instructionItems.forEach((item, index) => {
+                item.innerText = `${exerciseData[0].instructions[index]}`
+            })
+
+            $('.exercise-title').text(`${exerciseData[0].name}`)
+            $('.demo-image').attr('src', `${exerciseData[0].image}`)
+            $('.reps').text(`Suggested Reps: ${exerciseData[0].reps}`)
+            $('.equipment-info').text(`Equipment required? ${exerciseData[0].equipment}`)
+            $('.primary-muscle').text(`Primary Muscle Group: ${exerciseData[0].primary_muscle_id}`)
+            $('.secondary-muscle').text(`Secondary Muscle Group: ${exerciseData[0].secondary_muscle_id}`)
+            $('.muscle-group-image').attr('src', `${exerciseData[0].muscle_image}`)
+            $('.modal-close-button').click(() => {
+                $('.exercise-info-modal').hide()
+            })
+        })  
     })
 }
 

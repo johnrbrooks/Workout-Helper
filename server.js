@@ -17,8 +17,6 @@ app.get('/', (req, res) => {res.send('Server works!')})
 app.use('/', AppRouter)
 app.listen(PORT, () => {console.log(`Express server listening on port ${PORT}`)})
 
-
-
 /* app.get('/users', async (req, res) => {
   let usersAll = await Users.find()
   res.json(usersAll)

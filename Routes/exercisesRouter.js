@@ -10,5 +10,6 @@ Router.get('/shoulders', exerciseController.getShouldersExercises)
 Router.get('/back', exerciseController.getBackExercises)
 Router.get('/legs', exerciseController.getLegsExercises)
 Router.get('/abs', exerciseController.getAbsExercises)
+Router.get('/:name', exerciseController.getExercise)
 
 module.exports = Router

@@ -8,6 +8,13 @@ const getExercises = async (req, res) => {
     res.json(exercisesAll)
 }
 
+const getExercise = async (req, res) => {
+    const { name } = req.params
+    name.replace(' ', '%20')
+    const exercise = await Exercises.find({name: `${name}`})
+    res.json(exercise)
+}
+
 const getArmsExercises = async (req, res) => {
     try{
         const armExercises = await Exercises.find({muscle_category: 'Arms'})
@@ -25,6 +32,7 @@ const getChestExercises = async (req, res) => {
         return res.status(500).json({ error: error.message })
     }
 }
+
 const getShouldersExercises = async (req, res) => {
     try{
         const shoulderExercises = await Exercises.find({muscle_category: 'Shoulders'})
@@ -75,6 +83,7 @@ const getAbsExercises = async (req, res) => {
 
 module.exports = {
     getExercises,
+    getExercise,
     getArmsExercises,
     getChestExercises,
     getShouldersExercises,
