@@ -71,6 +71,10 @@ body {
 
 .exercises-display-page {
     display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
 }
 
 .footer-container {
@@ -345,7 +349,7 @@ body {
     border-radius: 10px;
 }
 
-#chest {
+.chest {
     background: url('https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/health/wp-content/uploads/2022/06/960x0-3-1.jpg');
     background-position: center;
     background-size: cover;
@@ -353,7 +357,7 @@ body {
     background-blend-mode: multiply;
 }
 
-#arms {
+.arms {
     background: url('https://cdn.shopify.com/s/files/1/1876/4703/articles/shutterstock_1417778522_1000x.jpg?v=1652135490');
     background-position: center;
     background-size: cover;
@@ -361,7 +365,7 @@ body {
     background-blend-mode: multiply;
 }
 
-#shoulders {
+.shoulders {
     background: url('https://i0.wp.com/www.strengthlog.com/wp-content/uploads/2023/05/shutterstock_336330470-scaled.jpg?fit=2560%2C1707&ssl=1');
     background-position: center;
     background-size: cover;
@@ -369,7 +373,7 @@ body {
     background-blend-mode: multiply;
 }
 
-#back {
+.back {
     background: url('https://www.muscleandfitness.com/wp-content/uploads/2018/05/1109-one-arm-dumbbell-row-back.jpg?quality=86&strip=all');
     background-position: center;
     background-size: cover;
@@ -377,7 +381,7 @@ body {
     background-blend-mode: multiply;
 }
 
-#legs {
+.legs {
     background: url('https://www.bulknutrients.com.au/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2F263h0ltd%2Fproduction%2F8d82f2697baf4f6c159a5d883b4c9b2b319dec11-600x400.jpg%3Fw%3D600%26h%3D400%26q%3D100%26fit%3Dfillmax&w=1200&q=90');
     background-position: center;
     background-size: cover;
@@ -385,7 +389,7 @@ body {
     background-blend-mode: multiply;
 }
 
-#abs {
+.abs {
     background: url('https://hips.hearstapps.com/womenshealth-uk/images/5020/plank_-_mistakes_-_guide_-_womens_health_uk__medium_4x3.jpg');
     background-position: center;
     background-size: cover;
@@ -393,13 +397,22 @@ body {
     background-blend-mode: multiply;
 }
 
-#chest:hover, #arms:hover, #shoulders:hover, #back:hover, #legs:hover, #abs:hover {
+.chest:hover, .arms:hover, .shoulders:hover, .back:hover, .legs:hover, .abs:hover {
     background-color:#c3c9ea;
 }
 
 .muscle-group:hover {
     cursor: pointer;
     transform: translateY(-4px);
+}
+
+.chest-container,
+.arms-container,
+.shoulders-container,
+.back-container,
+.legs-container,
+.abs-container {
+    display: none;
 }
 
 /* RESPONSIVENESS */

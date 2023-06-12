@@ -1,7 +1,7 @@
 const Router = require('express').Router()
 const exerciseController = require('../Controllers/exerciseController.js')
 
-//Full route: localhost:3001/api/exercises/**muscle**
+//Full route: localhost:3001/exercises/**muscle**
 
 Router.get('/', exerciseController.getExercises)
 Router.get('/arms', exerciseController.getArmsExercises)

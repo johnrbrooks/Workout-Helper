@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://kit.fontawesome.com/c9dab565ca.js" crossorigin="anonymous"></script>
     <script defer src="script.js"></script>
@@ -205,29 +206,52 @@
     <div class="exercises-group-page">
         <h1 class="exercises-groups-title">Select a Muscle Group!</h1>
         <div class="muscle-groups-grid">
-            <div class="muscle-group" id="chest">
-                <h3 class="muscle-title">Chest</h3>
+            <div class="muscle-group chest" id="chest">
+                <h3 class="muscle-title" id="chest">Chest</h3>
             </div>
-            <div class="muscle-group" id="arms">
-                <h3 class="muscle-title">Arms</h3>
+            <div class="muscle-group arms" id="arms">
+                <h3 class="muscle-title" id="arms">Arms</h3>
             </div>
-            <div class="muscle-group" id="shoulders">
-                <h3 class="muscle-title">Shoulders</h3>
+            <div class="muscle-group shoulders" id="shoulders">
+                <h3 class="muscle-title" id="shoulders">Shoulders</h3>
             </div>
-            <div class="muscle-group" id="back">
-                <h3 class="muscle-title">Back</h3>
+            <div class="muscle-group back" id="back">
+                <h3 class="muscle-title" id="back">Back</h3>
             </div>
-            <div class="muscle-group" id="legs">
-                <h3 class="muscle-title">Legs</h3>
+            <div class="muscle-group legs" id="legs">
+                <h3 class="muscle-title" id="legs">Legs</h3>
             </div>
-            <div class="muscle-group" id="abs">
-                <h3 class="muscle-title">Abs</h3>
+            <div class="muscle-group abs" id="abs">
+                <h3 class="muscle-title" id="abs">Abs</h3>
             </div>
         </div>
     </div>
     <!--EXERCISES DISPLAY PAGE-->
     <div class="exercises-display-page">
+        <div class="chest-container">
+            <h1 class="exercise-display-title">Chest Exercises</h1>
+            
+        </div>
+        <div class="arms-container">
+            <h1 class="exercise-display-title">Arm Exercises</h1>
 
+        </div>
+        <div class="shoulders-container">
+            <h1 class="exercise-display-title">Shoulder Exercises</h1>
+
+        </div>
+        <div class="back-container">
+            <h1 class="exercise-display-title">Back Exercises</h1>
+
+        </div>
+        <div class="legs-container">
+            <h1 class="exercise-display-title">Leg Exercises</h1>
+
+        </div>
+        <div class="abs-container">
+            <h1 class="exercise-display-title">Ab Exercises</h1>
+
+        </div>
     </div>
     <!--FOOTER-->
     <footer class="footer-container">

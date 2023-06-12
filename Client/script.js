@@ -164,7 +164,111 @@ function completeExercise() {
 
 const muscleGroupButtons = document.querySelectorAll('.muscle-group')
 
+let selectedMuscle;
+
 muscleGroupButtons.forEach(button => {
-    button.addEventListener('click', showExercises)
+    button.addEventListener('click', (e) => {
+        selectedMuscle = e.target.id
+        console.log(selectedMuscle)
+        switch(selectedMuscle) {
+            case 'chest':
+                clearMainPages()
+                showChest()
+                break
+            case 'arms':
+                clearMainPages()
+                showArms()
+                break
+            case 'shoulders':
+                clearMainPages()
+                showShoulders()
+                break
+            case 'back':
+                clearMainPages()
+                showBack()
+                break
+            case 'legs':
+                clearMainPages()
+                showLegs()
+                break
+            case 'abs':
+                clearMainPages()
+                showAbs()
+                break
+            default:
+                break
+        }
+    })
 })
 
+// EXERCISES DISPLAY PAGES
+
+function clearMainPages() {
+    createAccountPage.style.display = 'none'
+    exercisesDisplayPage.style.display = 'none'
+    calendarPage.style.display = 'none'
+    exerciseGroupsPage.style.display = 'none'
+    userLoginPage.style.display = 'none'
+    exercisesDisplayPage.style.display = 'flex'
+}
+
+chestContainer = document.querySelector('.chest-container')
+armsContainer = document.querySelector('.arms-container')
+shouldersContainer = document.querySelector('.shoulders-container')
+backContainer = document.querySelector('.back-container')
+legsContainer = document.querySelector('.legs-container')
+absContainer = document.querySelector('.abs-container')
+
+async function showChest() {
+    armsContainer.style.display = 'none'
+    shouldersContainer.style.display = 'none'
+    backContainer.style.display = 'none'
+    legsContainer.style.display = 'none'
+    absContainer.style.display = 'none'
+    chestContainer.style.display = 'flex'
+}
+
+async function showArms() {
+    shouldersContainer.style.display = 'none'
+    backContainer.style.display = 'none'
+    legsContainer.style.display = 'none'
+    absContainer.style.display = 'none'
+    chestContainer.style.display = 'none'
+    armsContainer.style.display = 'flex'
+}
+
+async function showShoulders() {
+    armsContainer.style.display = 'none'
+    backContainer.style.display = 'none'
+    legsContainer.style.display = 'none'
+    absContainer.style.display = 'none'
+    chestContainer.style.display = 'none'
+    shouldersContainer.style.display = 'flex'
+}
+
+async function showBack() {
+    armsContainer.style.display = 'none'
+    shouldersContainer.style.display = 'none'
+    legsContainer.style.display = 'none'
+    absContainer.style.display = 'none'
+    chestContainer.style.display = 'none'
+    backContainer.style.display = 'flex'
+}
+
+async function showLegs() {
+    armsContainer.style.display = 'none'
+    shouldersContainer.style.display = 'none'
+    backContainer.style.display = 'none'
+    absContainer.style.display = 'none'
+    chestContainer.style.display = 'none'
+    legsContainer.style.display = 'flex'
+}
+
+async function showAbs() {
+    armsContainer.style.display = 'none'
+    shouldersContainer.style.display = 'none'
+    backContainer.style.display = 'none'
+    legsContainer.style.display = 'none'
+    chestContainer.style.display = 'none'
+    absContainer.style.display = 'flex'
+}
