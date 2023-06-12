@@ -203,6 +203,8 @@ muscleGroupButtons.forEach(button => {
 
 // EXERCISES DISPLAY PAGES
 
+let url = 'https://localhost:3001'
+
 function clearMainPages() {
     createAccountPage.style.display = 'none'
     exercisesDisplayPage.style.display = 'none'
@@ -226,6 +228,66 @@ async function showChest() {
     legsContainer.style.display = 'none'
     absContainer.style.display = 'none'
     chestContainer.style.display = 'flex'
+    const getChestExercises = await axios.get('http://localhost:3001/exercises/chest')
+    console.log(getChestExercises)
+    let instructionsArray = []
+    let dataArray = getChestExercises.data
+
+    for (let i = 0; i < dataArray.length; i++) {
+        let object = dataArray[i]
+        let instructionsLength = object.instructions.length
+        instructionsArray.push(instructionsLength)
+    }
+
+    dataArray.forEach((exercise, index) => {
+        //create exercise div
+        const chestExercise = document.createElement('div')
+        chestContainer.appendChild(chestExercise)
+        chestExercise.classList.add('exerciseDiv')
+        //create image div
+        const chestExerciseImages = document.createElement('div')
+        chestExercise.appendChild(chestExerciseImages)
+        chestExerciseImages.classList.add('exercise-images')
+        //create content div
+        const chestExerciseContent = document.createElement('div')
+        chestExercise.appendChild(chestExerciseContent)
+        chestExerciseContent.classList.add('exercise-content')
+        //create exercise image
+        const exerciseImage = document.createElement('img')
+        chestExerciseImages.appendChild(exerciseImage)
+        exerciseImage.classList.add('exercise-image')
+        exerciseImage.src = `${exercise.image}`
+        //create muscle image
+        const muscleImage = document.createElement('img')
+        chestExerciseImages.appendChild(muscleImage)
+        muscleImage.classList.add('muscle-image')
+        muscleImage.src = `${exercise.muscle_image}`
+        //create name title
+        const exerciseName = document.createElement('h2')
+        chestExerciseContent.appendChild(exerciseName)
+        exerciseName.classList.add('exercise-name')
+        exerciseName.innerText = `${exercise.name}`
+        //create instructions
+        const instructionList = document.createElement('ol')
+        chestExerciseContent.appendChild(instructionList)
+        instructionList.classList.add('instruction-list')
+
+        const numberOfItems = instructionsArray[index]
+        const instructionItems = exercise.instructions
+
+        for(let i = 0; i < numberOfItems; i++) {
+            const listItem = document.createElement('li')
+            instructionList.appendChild(listItem)
+            listItem.classList.add('instruction-list-item')
+            listItem.innerText = instructionItems[i].value
+        }
+
+        //create equipment note
+        const equipmentNote = document.createElement('p')
+        chestExerciseContent.appendChild(equipmentNote)
+        equipmentNote.classList.add('equipment-note')
+        equipmentNote.innerText = `Does this exercise need equipment? ${exercise.equipment}`
+    })
 }
 
 async function showArms() {

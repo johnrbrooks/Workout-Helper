@@ -415,6 +415,55 @@ body {
     display: none;
 }
 
+.chest-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.exerciseDiv {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    margin: 2rem 0;
+    border: white solid 2px;
+}
+
+.exercise-images {
+    display: flex;
+    flex-direction: column;
+}
+
+.exercise-content {
+
+}
+
+.exercise-image {
+    width: 10rem;
+}
+
+.muscle-image {
+    width: 10rem;
+}
+
+.exercise-name {
+
+}
+
+.instruction-list {
+
+}
+
+.instruction-list-item {
+
+}
+
+.equipment-note {
+
+}
+
 /* RESPONSIVENESS */
 
 @media screen and (max-width: 500px) {
