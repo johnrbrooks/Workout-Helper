@@ -16,6 +16,10 @@ $('#backArrow1').click(function goBackToLogin() {
     $('.user-login-page').css('display', 'flex')
 })
 
+// SELECT DAY MODAL
+
+$('.day-select-modal').hide()
+
 // HAMBURGER MENU
     const menuButton = document.querySelector('#hamburger')
     const menuContainer = document.querySelector('.menu-container')
@@ -201,7 +205,7 @@ muscleGroupButtons.forEach(button => {
     })
 })
 
-// EXERCISES DISPLAY PAGES
+// EXERCISE DISPLAY PAGES
 
 let url = 'https://localhost:3001'
 
@@ -214,123 +218,329 @@ function clearMainPages() {
     exercisesDisplayPage.style.display = 'flex'
 }
 
-chestContainer = document.querySelector('.chest-container')
-armsContainer = document.querySelector('.arms-container')
-shouldersContainer = document.querySelector('.shoulders-container')
-backContainer = document.querySelector('.back-container')
-legsContainer = document.querySelector('.legs-container')
-absContainer = document.querySelector('.abs-container')
+const chestContainer = document.querySelector('.chest-container')
+const armsContainer = document.querySelector('.arms-container')
+const shouldersContainer = document.querySelector('.shoulders-container')
+const backContainer = document.querySelector('.back-container')
+const legsContainer = document.querySelector('.legs-container')
+const absContainer = document.querySelector('.abs-container')
+
+let clickedExercise;
 
 async function showChest() {
-    armsContainer.style.display = 'none'
-    shouldersContainer.style.display = 'none'
-    backContainer.style.display = 'none'
-    legsContainer.style.display = 'none'
-    absContainer.style.display = 'none'
+    [armsContainer, shouldersContainer, backContainer, legsContainer, absContainer].forEach(container => container.style.display = 'none');
     chestContainer.style.display = 'flex'
     const getChestExercises = await axios.get('http://localhost:3001/exercises/chest')
-    console.log(getChestExercises)
-    let instructionsArray = []
-    let dataArray = getChestExercises.data
 
-    for (let i = 0; i < dataArray.length; i++) {
-        let object = dataArray[i]
-        let instructionsLength = object.instructions.length
-        instructionsArray.push(instructionsLength)
-    }
+    $('.day-select-modal').hide()
+
+    let dataArray = getChestExercises.data
 
     dataArray.forEach((exercise, index) => {
         //create exercise div
         const chestExercise = document.createElement('div')
         chestContainer.appendChild(chestExercise)
         chestExercise.classList.add('exerciseDiv')
-        //create image div
-        const chestExerciseImages = document.createElement('div')
-        chestExercise.appendChild(chestExerciseImages)
-        chestExerciseImages.classList.add('exercise-images')
         //create content div
         const chestExerciseContent = document.createElement('div')
         chestExercise.appendChild(chestExerciseContent)
         chestExerciseContent.classList.add('exercise-content')
-        //create exercise image
-        const exerciseImage = document.createElement('img')
-        chestExerciseImages.appendChild(exerciseImage)
-        exerciseImage.classList.add('exercise-image')
-        exerciseImage.src = `${exercise.image}`
-        //create muscle image
-        const muscleImage = document.createElement('img')
-        chestExerciseImages.appendChild(muscleImage)
-        muscleImage.classList.add('muscle-image')
-        muscleImage.src = `${exercise.muscle_image}`
+        //create image div
+        const chestExerciseImages = document.createElement('div')
+        chestExercise.appendChild(chestExerciseImages)
+        chestExerciseImages.classList.add('exercise-images')
         //create name title
         const exerciseName = document.createElement('h2')
         chestExerciseContent.appendChild(exerciseName)
         exerciseName.classList.add('exercise-name')
         exerciseName.innerText = `${exercise.name}`
-        //create instructions
-        const instructionList = document.createElement('ol')
-        chestExerciseContent.appendChild(instructionList)
-        instructionList.classList.add('instruction-list')
-
-        const numberOfItems = instructionsArray[index]
-        const instructionItems = exercise.instructions
-
-        for(let i = 0; i < numberOfItems; i++) {
-            const listItem = document.createElement('li')
-            instructionList.appendChild(listItem)
-            listItem.classList.add('instruction-list-item')
-            listItem.innerText = instructionItems[i].value
-        }
-
-        //create equipment note
-        const equipmentNote = document.createElement('p')
-        chestExerciseContent.appendChild(equipmentNote)
-        equipmentNote.classList.add('equipment-note')
-        equipmentNote.innerText = `Does this exercise need equipment? ${exercise.equipment}`
+        //create instructions link
+        const instructionLink = document.createElement('p')
+        chestExerciseContent.appendChild(instructionLink)
+        instructionLink.classList.add('instruction-link')
+        instructionLink.innerText = 'Click for details'
+        //create exercise image
+        const exerciseImage = document.createElement('img')
+        chestExerciseImages.appendChild(exerciseImage)
+        exerciseImage.classList.add('exercise-image')
+        exerciseImage.src = `${exercise.image}`
+        //add to calendar button
+        const addToCalendarButton = document.createElement('button')
+        chestExercise.appendChild(addToCalendarButton)
+        addToCalendarButton.classList.add('add-to-calendar-button')
+        addToCalendarButton.innerText = 'Add To Calendar'
+        addToCalendarButton.addEventListener('click', (e) => {
+            clickedExercise = e.target
+            $('.day-select-modal').show()
+            $('.modal-close-button').click(() => {
+                $('.day-select-modal').hide()
+            })
+        })
     })
 }
 
 async function showArms() {
-    shouldersContainer.style.display = 'none'
-    backContainer.style.display = 'none'
-    legsContainer.style.display = 'none'
-    absContainer.style.display = 'none'
-    chestContainer.style.display = 'none'
+    [chestContainer, shouldersContainer, backContainer, legsContainer, absContainer].forEach(container => container.style.display = 'none');
     armsContainer.style.display = 'flex'
+
+    const getArmExercises = await axios.get('http://localhost:3001/exercises/arms')
+
+    $('.day-select-modal').hide()
+
+    let dataArray = getArmExercises.data
+
+    dataArray.forEach((exercise, index) => {
+        //create exercise div
+        const armExercise = document.createElement('div')
+        armsContainer.appendChild(armExercise)
+        armExercise.classList.add('exerciseDiv')
+        //create content div
+        const armExerciseContent = document.createElement('div')
+        armExercise.appendChild(armExerciseContent)
+        armExerciseContent.classList.add('exercise-content')
+        //create image div
+        const armExerciseImages = document.createElement('div')
+        armExercise.appendChild(armExerciseImages)
+        armExerciseImages.classList.add('exercise-images')
+        //create name title
+        const exerciseName = document.createElement('h2')
+        armExerciseContent.appendChild(exerciseName)
+        exerciseName.classList.add('exercise-name')
+        exerciseName.innerText = `${exercise.name}`
+        //create instructions link
+        const instructionLink = document.createElement('p')
+        armExerciseContent.appendChild(instructionLink)
+        instructionLink.classList.add('instruction-link')
+        instructionLink.innerText = 'Click for details'
+        //create exercise image
+        const exerciseImage = document.createElement('img')
+        armExerciseImages.appendChild(exerciseImage)
+        exerciseImage.classList.add('exercise-image')
+        exerciseImage.src = `${exercise.image}`
+        //add to calendar button
+        const addToCalendarButton = document.createElement('button')
+        armExercise.appendChild(addToCalendarButton)
+        addToCalendarButton.classList.add('add-to-calendar-button')
+        addToCalendarButton.innerText = 'Add To Calendar'
+        addToCalendarButton.addEventListener('click', (e) => {
+            clickedExercise = e.target
+            $('.day-select-modal').show()
+            $('.modal-close-button').click(() => {
+                $('.day-select-modal').hide()
+            })
+        })    
+    })
 }
 
 async function showShoulders() {
-    armsContainer.style.display = 'none'
-    backContainer.style.display = 'none'
-    legsContainer.style.display = 'none'
-    absContainer.style.display = 'none'
-    chestContainer.style.display = 'none'
+    [armsContainer, chestContainer, backContainer, legsContainer, absContainer].forEach(container => container.style.display = 'none');
     shouldersContainer.style.display = 'flex'
+
+    const getShoulderExercises = await axios.get('http://localhost:3001/exercises/shoulders')
+
+    $('.day-select-modal').hide()
+
+    let dataArray = getShoulderExercises.data
+
+    dataArray.forEach((exercise, index) => {
+        //create exercise div
+        const shoulderExercise = document.createElement('div')
+        shouldersContainer.appendChild(shoulderExercise)
+        shoulderExercise.classList.add('exerciseDiv')
+        //create content div
+        const shoulderExerciseContent = document.createElement('div')
+        shoulderExercise.appendChild(shoulderExerciseContent)
+        shoulderExerciseContent.classList.add('exercise-content')
+        //create image div
+        const shoulderExerciseImages = document.createElement('div')
+        shoulderExercise.appendChild(shoulderExerciseImages)
+        shoulderExerciseImages.classList.add('exercise-images')
+        //create name title
+        const exerciseName = document.createElement('h2')
+        shoulderExerciseContent.appendChild(exerciseName)
+        exerciseName.classList.add('exercise-name')
+        exerciseName.innerText = `${exercise.name}`
+        //create instructions link
+        const instructionLink = document.createElement('p')
+        shoulderExerciseContent.appendChild(instructionLink)
+        instructionLink.classList.add('instruction-link')
+        instructionLink.innerText = 'Click for details'
+        //create exercise image
+        const exerciseImage = document.createElement('img')
+        shoulderExerciseImages.appendChild(exerciseImage)
+        exerciseImage.classList.add('exercise-image')
+        exerciseImage.src = `${exercise.image}`
+        //add to calendar button
+        const addToCalendarButton = document.createElement('button')
+        shoulderExercise.appendChild(addToCalendarButton)
+        addToCalendarButton.classList.add('add-to-calendar-button')
+        addToCalendarButton.innerText = 'Add To Calendar'
+        addToCalendarButton.addEventListener('click', (e) => {
+            clickedExercise = e.target
+            $('.day-select-modal').show()
+            $('.modal-close-button').click(() => {
+                $('.day-select-modal').hide()
+            })
+        })    
+    })
 }
 
 async function showBack() {
-    armsContainer.style.display = 'none'
-    shouldersContainer.style.display = 'none'
-    legsContainer.style.display = 'none'
-    absContainer.style.display = 'none'
-    chestContainer.style.display = 'none'
+    [armsContainer, chestContainer, shouldersContainer, legsContainer, absContainer].forEach(container => container.style.display = 'none');
     backContainer.style.display = 'flex'
+
+    const getBackExercises = await axios.get('http://localhost:3001/exercises/back')
+
+    $('.day-select-modal').hide()
+
+    let dataArray = getBackExercises.data
+
+    dataArray.forEach((exercise, index) => {
+        //create exercise div
+        const backExercise = document.createElement('div')
+        backContainer.appendChild(backExercise)
+        backExercise.classList.add('exerciseDiv')
+        //create content div
+        const backExerciseContent = document.createElement('div')
+        backExercise.appendChild(backExerciseContent)
+        backExerciseContent.classList.add('exercise-content')
+        //create image div
+        const backExerciseImages = document.createElement('div')
+        backExercise.appendChild(backExerciseImages)
+        backExerciseImages.classList.add('exercise-images')
+        //create name title
+        const exerciseName = document.createElement('h2')
+        backExerciseContent.appendChild(exerciseName)
+        exerciseName.classList.add('exercise-name')
+        exerciseName.innerText = `${exercise.name}`
+        //create instructions link
+        const instructionLink = document.createElement('p')
+        backExerciseContent.appendChild(instructionLink)
+        instructionLink.classList.add('instruction-link')
+        instructionLink.innerText = 'Click for details'
+        //create exercise image
+        const exerciseImage = document.createElement('img')
+        backExerciseImages.appendChild(exerciseImage)
+        exerciseImage.classList.add('exercise-image')
+        exerciseImage.src = `${exercise.image}`
+        //add to calendar button
+        const addToCalendarButton = document.createElement('button')
+        backExercise.appendChild(addToCalendarButton)
+        addToCalendarButton.classList.add('add-to-calendar-button')
+        addToCalendarButton.innerText = 'Add To Calendar'
+        addToCalendarButton.addEventListener('click', (e) => {
+            clickedExercise = e.target
+            $('.day-select-modal').show()
+            $('.modal-close-button').click(() => {
+                $('.day-select-modal').hide()
+            })
+        })    
+    })
 }
 
 async function showLegs() {
-    armsContainer.style.display = 'none'
-    shouldersContainer.style.display = 'none'
-    backContainer.style.display = 'none'
-    absContainer.style.display = 'none'
-    chestContainer.style.display = 'none'
+    [chestContainer, shouldersContainer, backContainer, armsContainer, absContainer].forEach(container => container.style.display = 'none');
     legsContainer.style.display = 'flex'
+
+    const getLegExercises = await axios.get('http://localhost:3001/exercises/legs')
+
+    $('.day-select-modal').hide()
+
+    let dataArray = getLegExercises.data
+
+    dataArray.forEach((exercise, index) => {
+        //create exercise div
+        const legExercise = document.createElement('div')
+        legsContainer.appendChild(legExercise)
+        legExercise.classList.add('exerciseDiv')
+        //create content div
+        const legExerciseContent = document.createElement('div')
+        legExercise.appendChild(legExerciseContent)
+        legExerciseContent.classList.add('exercise-content')
+        //create image div
+        const legExerciseImages = document.createElement('div')
+        legExercise.appendChild(legExerciseImages)
+        legExerciseImages.classList.add('exercise-images')
+        //create name title
+        const exerciseName = document.createElement('h2')
+        legExerciseContent.appendChild(exerciseName)
+        exerciseName.classList.add('exercise-name')
+        exerciseName.innerText = `${exercise.name}`
+        //create instructions link
+        const instructionLink = document.createElement('p')
+        legExerciseContent.appendChild(instructionLink)
+        instructionLink.classList.add('instruction-link')
+        instructionLink.innerText = 'Click for details'
+        //create exercise image
+        const exerciseImage = document.createElement('img')
+        legExerciseImages.appendChild(exerciseImage)
+        exerciseImage.classList.add('exercise-image')
+        exerciseImage.src = `${exercise.image}`
+        //add to calendar button
+        const addToCalendarButton = document.createElement('button')
+        legExercise.appendChild(addToCalendarButton)
+        addToCalendarButton.classList.add('add-to-calendar-button')
+        addToCalendarButton.innerText = 'Add To Calendar'
+        addToCalendarButton.addEventListener('click', (e) => {
+            clickedExercise = e.target
+            $('.day-select-modal').show()
+            $('.modal-close-button').click(() => {
+                $('.day-select-modal').hide()
+            })
+        })    
+    })
 }
 
 async function showAbs() {
-    armsContainer.style.display = 'none'
-    shouldersContainer.style.display = 'none'
-    backContainer.style.display = 'none'
-    legsContainer.style.display = 'none'
-    chestContainer.style.display = 'none'
+    [chestContainer, shouldersContainer, backContainer, legsContainer, armsContainer].forEach(container => container.style.display = 'none');
     absContainer.style.display = 'flex'
+
+    const getAbExercises = await axios.get('http://localhost:3001/exercises/abs')
+
+    $('.day-select-modal').hide()
+
+    let dataArray = getAbExercises.data
+
+    dataArray.forEach((exercise, index) => {
+        //create exercise div
+        const abExercise = document.createElement('div')
+        absContainer.appendChild(abExercise)
+        abExercise.classList.add('exerciseDiv')
+        //create content div
+        const abExerciseContent = document.createElement('div')
+        abExercise.appendChild(abExerciseContent)
+        abExerciseContent.classList.add('exercise-content')
+        //create image div
+        const abExerciseImages = document.createElement('div')
+        abExercise.appendChild(abExerciseImages)
+        abExerciseImages.classList.add('exercise-images')
+        //create name title
+        const exerciseName = document.createElement('h2')
+        abExerciseContent.appendChild(exerciseName)
+        exerciseName.classList.add('exercise-name')
+        exerciseName.innerText = `${exercise.name}`
+        //create instructions link
+        const instructionLink = document.createElement('p')
+        abExerciseContent.appendChild(instructionLink)
+        instructionLink.classList.add('instruction-link')
+        instructionLink.innerText = 'Click for details'
+        //create exercise image
+        const exerciseImage = document.createElement('img')
+        abExerciseImages.appendChild(exerciseImage)
+        exerciseImage.classList.add('exercise-image')
+        exerciseImage.src = `${exercise.image}`
+        //add to calendar button
+        const addToCalendarButton = document.createElement('button')
+        abExercise.appendChild(addToCalendarButton)
+        addToCalendarButton.classList.add('add-to-calendar-button')
+        addToCalendarButton.innerText = 'Add To Calendar'
+        addToCalendarButton.addEventListener('click', (e) => {
+            clickedExercise = e.target
+            $('.day-select-modal').show()
+            $('.modal-close-button').click(() => {
+                $('.day-select-modal').hide()
+            })
+        })    
+    })
 }
+

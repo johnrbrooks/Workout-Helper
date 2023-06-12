@@ -167,14 +167,6 @@ body {
     background-color: #2443de;
 }
 
-/* #hamburger {
-    display: flex;
-}
-
-#hamburger:hover {
-    cursor: pointer;
-} */
-
 .calendar-button {
     display: none;
     padding: 0.7rem 3rem;
@@ -415,7 +407,12 @@ body {
     display: none;
 }
 
-.chest-container {
+.chest-container,
+.arms-container,
+.shoulders-container,
+.back-container,
+.legs-container,
+.abs-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -424,11 +421,16 @@ body {
 }
 
 .exerciseDiv {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    width: 350px;
+    padding: 2rem;
     margin: 2rem 0;
     border: white solid 2px;
+    border-radius: 10px;
+    background-color: black;
 }
 
 .exercise-images {
@@ -437,31 +439,101 @@ body {
 }
 
 .exercise-content {
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .exercise-image {
     width: 10rem;
-}
-
-.muscle-image {
-    width: 10rem;
+    border-radius: 10px;
+    border: white 1px solid;
 }
 
 .exercise-name {
+    margin-bottom: 1rem;
+}
+
+.instruction-link {
+    margin-bottom: 1rem;
+}
+
+.instruction-link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.add-to-calendar-button {
+    margin-top: 1.5rem;
+    padding: 0.7rem 2.5rem;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color:#4CA82B;
+    font-size: 1.5rem;
+}
+
+.add-to-calendar-button:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    background-color: #66e03a;
+}
+
+.exercise-info-modal {
 
 }
 
-.instruction-list {
-
+.day-select-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: white solid 2px;
+    border-radius: 10px;
+    width: 450px;
+    padding: 2rem;
+    background: linear-gradient(45deg, rgb(12, 12, 12), rgb(59, 59, 59));
+    position: fixed;
+    margin: auto;
+    position: relative;
+    z-index: 99;
 }
 
-.instruction-list-item {
-
+.day-modal-title {
+    margin-bottom: 1rem;
 }
 
-.equipment-note {
+.button-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+}
 
+.day-button {
+    background-color:#0C2AC7;
+    color: white;
+    font-weight: 700;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+}
+
+.day-button:hover {
+    background-color:#2443de;
+    cursor: pointer;
+}
+
+.modal-close-button {
+    position: absolute;
+    line-height: 15px;
+    right: 0;
+    top: 0;
+    padding: 0.5rem;
+}
+
+.modal-close-button:hover {
+    cursor: pointer;
 }
 
 /* RESPONSIVENESS */

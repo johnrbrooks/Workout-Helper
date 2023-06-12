@@ -34,6 +34,15 @@ const getShouldersExercises = async (req, res) => {
     }
 }
 
+const getBackExercises = async (req, res) => {
+    try{
+        const backExercises = await Exercises.find({muscle_category: 'Back'})
+        res.json(backExercises)
+    }catch (error) {
+        return res.status(500).json({ error: error.message })
+    }
+}
+
 const getLegsExercises = async (req, res) => {
     try{
         const legExercises = await Exercises.find({muscle_category: 'Legs'})
@@ -69,6 +78,7 @@ module.exports = {
     getArmsExercises,
     getChestExercises,
     getShouldersExercises,
+    getBackExercises,
     getLegsExercises,
     getAbsExercises,
 }
