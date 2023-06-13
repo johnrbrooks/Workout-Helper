@@ -100,6 +100,18 @@ async function validateNewUser(newUser) {
 
 async function addNewUser(newUser) {
     postNewUserToDB = await axios.post('http://localhost:3001/users/createuser', newUser)
+    let calendar_id = newUser.username
+    let newCalendar = {
+        user_username: `${calendar_id}`,
+        monday: [],
+        tuesday: [],
+        wednesday: [],
+        thursday: [],
+        friday: [],
+        saturday: [],
+        sunday: [],
+    }
+    createUserCalendar = await axios.post('http://localhost:3001/calendars/createcalendar', )
     $('.create-account-page').css('display', 'none')
     $('.user-login-page').css('display', 'flex')
 }
