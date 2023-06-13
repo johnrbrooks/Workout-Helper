@@ -36,12 +36,11 @@ const addToCalendar = async (req, res) => {
     try {
         const { updateRequestInfo } = req.params
         const separator = '-'
-        const splitLimit = 2
+        const splitLimit = 3
         const splitOne = updateRequestInfo.split(separator, splitLimit)
-        user_username = splitOne[0]
-        const splitTwo = splitOne[1].split(separator, splitLimit)
-        day = splitTwo[0].toLowerCase()
-        exercise = splitTwo[1]
+        let user_username = splitOne[0]
+        let day = splitOne[1]
+        let exercise = splitOne[2]
 
         const userCalendar = await Calendar.findOne({ user_username: `${user_username}` })
         if(!userCalendar) {
@@ -51,7 +50,8 @@ const addToCalendar = async (req, res) => {
         if(!requestedExercise) {
             return res.status(404).json({ message: 'Exercise not found' })
         }
-        userCalendar.day.push(requestedExercise)
+
+        userCalendar[day].push(requestedExercise)
 
         await userCalendar.save()
 
@@ -66,12 +66,11 @@ const removeFromCalendar = async (req, res) => {
     try {
         const { updateRequestInfo } = req.params
         const separator = '-'
-        const splitLimit = 2
+        const splitLimit = 3
         const splitOne = updateRequestInfo.split(separator, splitLimit)
-        const user_username = splitOne[0]
-        const splitTwo = splitOne[1].split(separator, splitLimit)
-        const day = splitTwo[0].toLowerCase()
-        const exerciseToRemove = splitTwo[1]
+        let user_username = splitOne[0]
+        let day = splitOne[1]
+        let exerciseToRemove = splitOne[2]
 
         const userCalendar = await Calendar.findOne({ user_username: `${user_username}` })
         if(!userCalendar) {

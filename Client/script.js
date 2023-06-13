@@ -121,6 +121,36 @@ async function addNewUser(newUser) {
 $('.day-select-modal').hide()
 $('.exercise-info-modal').hide()
 
+const daySelectorButtons = document.querySelectorAll('.day-button')
+
+daySelectorButtons.forEach(button => {
+    button.addEventListener('click', collectInfo)
+})
+
+function collectInfo(event) {
+    let buttonClicked = event.target
+    let day = buttonClicked.innerHTML.toLowerCase()
+    let user = currentUser.data.username.toLowerCase()
+    let exercise = clickedExercise.id
+    console.log(day, user, exercise)
+    addToCalendar(user, day, exercise)
+}
+
+async function addToCalendar(user, day, exercise) {
+    const addItemToCalendar = await axios.put(`http://localhost:3001/calendars/add/${user}-${day}-${exercise}`)
+    if(addItemToCalendar) {
+        console.log(addItemToCalendar)
+    }
+    $('.day-select-modal').hide()
+}
+
+async function deleteFromCalendar(user, day, exercise) {
+    const removeItemFromCalendar = await axios.put(`http://localhost:3001/calendars/remove/${user}-${day}-${exercise}`)
+    if(removeItemFromCalendar) {
+        console.log(removeItemFromCalendar)
+    }
+}
+
 // HAMBURGER MENU
     const menuButton = document.querySelector('#hamburger')
     const menuContainer = document.querySelector('.menu-container')
@@ -241,7 +271,6 @@ $(uncheckButtons).hide()
 
 let selectedExerciseCheck;
 let selectedExerciseUncheck
-let selectedExercise;
 
 completedButtons.forEach((button, index) => {
     button.addEventListener('click', (e) => {
@@ -328,6 +357,7 @@ const legsContainer = document.querySelector('.legs-container')
 const absContainer = document.querySelector('.abs-container')
 
 let clickedExercise;
+let selectedExercise;
 
 async function showChest() {
     [armsContainer, shouldersContainer, backContainer, legsContainer, absContainer].forEach(container => container.style.display = 'none');
@@ -370,6 +400,7 @@ async function showChest() {
         const addToCalendarButton = document.createElement('button')
         chestExercise.appendChild(addToCalendarButton)
         addToCalendarButton.classList.add('add-to-calendar-button')
+        addToCalendarButton.setAttribute('id', exerciseName.innerText)
         addToCalendarButton.innerText = 'Add To Calendar'
         addToCalendarButton.addEventListener('click', (e) => {
             clickedExercise = e.target
@@ -470,6 +501,7 @@ async function showArms() {
         armExercise.appendChild(addToCalendarButton)
         addToCalendarButton.classList.add('add-to-calendar-button')
         addToCalendarButton.innerText = 'Add To Calendar'
+        addToCalendarButton.setAttribute('id', exerciseName.innerText)
         addToCalendarButton.addEventListener('click', (e) => {
             clickedExercise = e.target
             $('.day-select-modal').show()
@@ -569,6 +601,7 @@ async function showShoulders() {
         shoulderExercise.appendChild(addToCalendarButton)
         addToCalendarButton.classList.add('add-to-calendar-button')
         addToCalendarButton.innerText = 'Add To Calendar'
+        addToCalendarButton.setAttribute('id', exerciseName.innerText)
         addToCalendarButton.addEventListener('click', (e) => {
             clickedExercise = e.target
             $('.day-select-modal').show()
@@ -668,6 +701,7 @@ async function showBack() {
         backExercise.appendChild(addToCalendarButton)
         addToCalendarButton.classList.add('add-to-calendar-button')
         addToCalendarButton.innerText = 'Add To Calendar'
+        addToCalendarButton.setAttribute('id', exerciseName.innerText)
         addToCalendarButton.addEventListener('click', (e) => {
             clickedExercise = e.target
             $('.day-select-modal').show()
@@ -767,6 +801,7 @@ async function showLegs() {
         legExercise.appendChild(addToCalendarButton)
         addToCalendarButton.classList.add('add-to-calendar-button')
         addToCalendarButton.innerText = 'Add To Calendar'
+        addToCalendarButton.setAttribute('id', exerciseName.innerText)
         addToCalendarButton.addEventListener('click', (e) => {
             clickedExercise = e.target
             $('.day-select-modal').show()
@@ -866,6 +901,7 @@ async function showAbs() {
         abExercise.appendChild(addToCalendarButton)
         addToCalendarButton.classList.add('add-to-calendar-button')
         addToCalendarButton.innerText = 'Add To Calendar'
+        addToCalendarButton.setAttribute('id', exerciseName.innerText)
         addToCalendarButton.addEventListener('click', (e) => {
             clickedExercise = e.target
             $('.day-select-modal').show()
