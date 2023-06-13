@@ -1,6 +1,5 @@
-const { Exercises, Users } = require('../Models')
+const { Exercises } = require('../Models')
 const exerciseSchema = require('../Models/exercise')
-const userSchema = require('../Models/user')
 
 
 const getExercises = async (req, res) => {
@@ -68,18 +67,6 @@ const getAbsExercises = async (req, res) => {
         return res.status(500).json({ error: error.message })
     }
 }
-
-/* const createUser = async (req, res) => {
-    try {
-        const user = await new user(req.body)
-        await Users.save()
-        return res.status(201).json({
-            user,
-        });
-    } catch (error) {
-        return res.status(500).json({ error: error.message })
-    }
-} */
 
 module.exports = {
     getExercises,

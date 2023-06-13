@@ -25,11 +25,11 @@
     </nav>
     <!--USER LOGIN PAGE-->
     <div class="user-login-page">
-        <form action="" class="login-form">
+        <form action="" class="login-form" id="loginForm">
             <p class="username-label">Username:</p>
-            <input class="username-input" type="text" required>
+            <input class="username-input" id="userUsernameInput" type="text" placeholder="Username" required>
             <p class="username-label">Password:</p>
-            <input class="username-input" type="password" required>
+            <input class="username-input" id="userPasswordInput" type="password" placeholder="Password" required>
         </form>
         <div class="buttons-container">
             <button class="login-button" id="loginButton">LOG IN</button>
@@ -42,13 +42,13 @@
                 <i class="fa-sharp fa-solid fa-arrow-left fa-2xl" id="backArrow1" style="color: #ffffff;"></i>
             </div>
             <h1 class="create-account-title">Fill out the form below!</h1>
-            <form action="" class="login-form">
+            <form action="" class="login-form" id="createAccountForm">
                 <p class="username-label">First Name:</p>
-                <input class="username-input" type="text" required>
+                <input class="username-input" id="newNameInput" type="text" placeholder="Your Name" required>
                 <p class="username-label">Username:</p>
-                <input class="username-input" type="text"required>
+                <input class="username-input" id="newUsernameInput" type="text" placeholder="New Username" required>
                 <p class="username-label">Password:</p>
-                <input class="username-input" type="password" required>
+                <input class="username-input" id="newPasswordInput" type="password" placeholder="New Password" required>
             </form>
             <button class="create-account-button" id="createAccount">Create Account</button>
         </div>

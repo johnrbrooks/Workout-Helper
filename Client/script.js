@@ -1,20 +1,108 @@
 // USER LOGIN AND CREATE ACCOUNT PAGE
 
-$('#loginButton').click(function userLogin() {
-    $('.user-login-page').css('display', 'none')
-    $('.calendar-page').css('display', 'flex')
-    $('#hamburger').css('display', 'block')
-})
-
 $('#createAccountButton').click(function goToCreateAccount() {
     $('.user-login-page').css('display', 'none')
     $('.create-account-page').css('display', 'flex')
+    $('#createAccountForm')[0].reset()
 })
 
 $('#backArrow1').click(function goBackToLogin() {
     $('.create-account-page').css('display', 'none')
     $('.user-login-page').css('display', 'flex')
 })
+
+//LOG IN
+let currentUser;
+let user;
+let userPassword;
+
+const loginButton = document.querySelector('#loginButton')
+const userUsernameInput = document.querySelector('#userUsernameInput')
+const userPasswordInput = document.querySelector('#userPasswordInput')
+
+loginButton.addEventListener('click', checkLoginForm)
+
+function checkLoginForm() {
+    user = userUsernameInput.value
+    password = userPasswordInput.value
+    if((user !== '' && user !== 'undefined') && (password !== '' && password !== 'undefined')) {
+        validateUserLogin(user, password)
+    } else {
+        alert('Please input your user information')
+    }
+}
+
+async function validateUserLogin(user, password) {
+    const userLoginRequest = user
+    const passwordLoginRequest = password
+    try{
+        const checkLoginInfo = await axios.get(`http://localhost:3001/users/login/${userLoginRequest}-${passwordLoginRequest}`)
+        if(checkLoginInfo) {
+            console.log('Login Sucessful!')
+            currentUser = checkLoginInfo
+            console.log(currentUser)
+            $('.user-login-page').css('display', 'none')
+            $('.calendar-page').css('display', 'flex')
+            $('#hamburger').css('display', 'block')
+        } else {
+            alert('Wrong Username or Password')
+        }
+    } catch (error) {
+        if(error.response && error.response.status === 500) {
+            alert('Incorrect password, try again.')
+        }
+    } finally {
+        $('#loginForm')[0].reset()
+    }
+}
+
+//CREATE ACCOUNT
+
+const createAccountButton = document.querySelector('#createAccount')
+const newNameInput = document.querySelector('#newNameInput')
+const newUsernameInput = document.querySelector('#newUsernameInput')
+const newPasswordInput = document.querySelector('#newPasswordInput')
+
+let newName;
+let newUsername;
+let newPassword;
+
+createAccountButton.addEventListener('click', () => {
+    newName = newNameInput.value
+    newUsername = newUsernameInput.value.toLowerCase()
+    newPassword = newPasswordInput.value
+    if((newName !== '' && newName !== 'undefined') && (newUsername !== '' && newUsername !== 'undefined') && (newPassword !== '' && newPassword !== 'undefined')) {
+        createNewUser(newName, newUsername, newPassword)
+    } else {
+        alert('Please fill out the form')
+    }
+})
+
+function createNewUser(newName, newUsername, newPassword) {
+    let newUser = {
+        name: `${newName}`,
+        username: `${newUsername}`,
+        password: `${newPassword}`,
+        pref_exercises: []
+    }
+    validateNewUser(newUser)
+}
+
+async function validateNewUser(newUser) {
+    const usernameRequest = newUser.username
+    const checkUsername = await axios.get(`http://localhost:3001/users/${usernameRequest}`)
+    if(checkUsername.data.length === 0) {
+        addNewUser(newUser)
+    } else {
+        alert('This username is already taken')
+    }
+}
+
+async function addNewUser(newUser) {
+    postNewUserToDB = await axios.post('http://localhost:3001/users/createuser', newUser)
+    $('.create-account-page').css('display', 'none')
+    $('.user-login-page').css('display', 'flex')
+}
 
 // SELECT DAY MODAL
 
@@ -67,6 +155,7 @@ $('.exercise-info-modal').hide()
         calendarPage.style.display = 'none'
         exerciseGroupsPage.style.display = 'none'
         userLoginPage.style.display = 'flex'
+        currentUser = null
     })
 
 
