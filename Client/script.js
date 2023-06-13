@@ -312,7 +312,7 @@ async function showChest() {
                 item.innerText = `${exerciseData[0].instructions[index]}`
             })
 
-            $('.exercise-title').text(`${exerciseData[0].name}`)
+            $('.modal-exercise-title').text(`${exerciseData[0].name}`)
             $('.demo-image').attr('src', `${exerciseData[0].image}`)
             $('.reps').text(`Suggested Reps: ${exerciseData[0].reps}`)
             $('.equipment-info').text(`Equipment required? ${exerciseData[0].equipment}`)
@@ -411,7 +411,7 @@ async function showArms() {
                 item.innerText = `${exerciseData[0].instructions[index]}`
             })
 
-            $('.exercise-title').text(`${exerciseData[0].name}`)
+            $('.modal-exercise-title').text(`${exerciseData[0].name}`)
             $('.demo-image').attr('src', `${exerciseData[0].image}`)
             $('.reps').text(`Suggested Reps: ${exerciseData[0].reps}`)
             $('.equipment-info').text(`Equipment required? ${exerciseData[0].equipment}`)
@@ -510,7 +510,7 @@ async function showShoulders() {
                 item.innerText = `${exerciseData[0].instructions[index]}`
             })
 
-            $('.exercise-title').text(`${exerciseData[0].name}`)
+            $('.modal-exercise-title').text(`${exerciseData[0].name}`)
             $('.demo-image').attr('src', `${exerciseData[0].image}`)
             $('.reps').text(`Suggested Reps: ${exerciseData[0].reps}`)
             $('.equipment-info').text(`Equipment required? ${exerciseData[0].equipment}`)
@@ -609,7 +609,7 @@ async function showBack() {
                 item.innerText = `${exerciseData[0].instructions[index]}`
             })
 
-            $('.exercise-title').text(`${exerciseData[0].name}`)
+            $('.modal-exercise-title').text(`${exerciseData[0].name}`)
             $('.demo-image').attr('src', `${exerciseData[0].image}`)
             $('.reps').text(`Suggested Reps: ${exerciseData[0].reps}`)
             $('.equipment-info').text(`Equipment required? ${exerciseData[0].equipment}`)
@@ -708,7 +708,7 @@ async function showLegs() {
                 item.innerText = `${exerciseData[0].instructions[index]}`
             })
 
-            $('.exercise-title').text(`${exerciseData[0].name}`)
+            $('.modal-exercise-title').text(`${exerciseData[0].name}`)
             $('.demo-image').attr('src', `${exerciseData[0].image}`)
             $('.reps').text(`Suggested Reps: ${exerciseData[0].reps}`)
             $('.equipment-info').text(`Equipment required? ${exerciseData[0].equipment}`)
@@ -807,7 +807,7 @@ async function showAbs() {
                 item.innerText = `${exerciseData[0].instructions[index]}`
             })
 
-            $('.exercise-title').text(`${exerciseData[0].name}`)
+            $('.modal-exercise-title').text(`${exerciseData[0].name}`)
             $('.demo-image').attr('src', `${exerciseData[0].image}`)
             $('.reps').text(`Suggested Reps: ${exerciseData[0].reps}`)
             $('.equipment-info').text(`Equipment required? ${exerciseData[0].equipment}`)
