@@ -111,7 +111,7 @@ async function addNewUser(newUser) {
         saturday: [],
         sunday: [],
     }
-    createUserCalendar = await axios.post('http://localhost:3001/calendars/createcalendar', )
+    createUserCalendar = await axios.post('http://localhost:3001/calendars/createcalendar', newCalendar)
     $('.create-account-page').css('display', 'none')
     $('.user-login-page').css('display', 'flex')
 }

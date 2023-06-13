@@ -3,14 +3,14 @@ const { Exercises } = require('../Models')
 const calendarSchema = require('../Models/calendar')
 
 const getCalendar = async (req, res) => {
-    const { user_username } = req.params
-    const userCalendar = await Calendar.findOne({user_username: `${user_username}`})
+    const { username } = req.params
+    const userCalendar = await Calendar.findOne({user_username: `${username}`})
     res.json(userCalendar)
 }
 
 const getCalendars = async (req, res) => {
-    const allCalendar = await Calendar.find()
-    res.json(allCalendar)
+    const allCalendars = await Calendar.find()
+    res.json(allCalendars)
 }
 
 const createCalendar = async (req, res) => {
