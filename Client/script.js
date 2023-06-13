@@ -12,6 +12,7 @@ $('#backArrow1').click(function goBackToLogin() {
 })
 
 //LOG IN
+
 let currentUser;
 let user;
 let userPassword;
@@ -21,6 +22,13 @@ const userUsernameInput = document.querySelector('#userUsernameInput')
 const userPasswordInput = document.querySelector('#userPasswordInput')
 
 loginButton.addEventListener('click', checkLoginForm)
+
+/* loginButton.addEventListener('keydown', (event) => {
+    console.log(event.key)
+    if(event.key === 'Enter') {
+        checkLoginForm()
+    }
+}) */
 
 function checkLoginForm() {
     user = userUsernameInput.value
@@ -203,7 +211,7 @@ async function deleteFromCalendar(user, day, exercise) {
 
 // CALENDAR PAGE
 
-const dayContainers = document.querySelectorAll('.day-label')
+/* const dayContainers = document.querySelectorAll('.day-label')
 
 dayContainers.forEach(day => {
     day.addEventListener('click', (e) => showExercises(e))
@@ -293,7 +301,7 @@ function completeExercise() {
         $(selectedExerciseUncheck).hide()
         $(selectedExerciseCheck).show()
     })
-}
+} */
 
 // EXERCISES GROUPS PAGE
 
