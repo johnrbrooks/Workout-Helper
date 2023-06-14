@@ -294,6 +294,7 @@ function populateExercises(calendar, dayId) {
         })
     }   
     activateOptionsButtons()
+    activateExerciseInfoButtons()
 }
 
 let exerciseToEdit;
@@ -311,6 +312,61 @@ function activateOptionsButtons() {
     markIncompleteButton.addEventListener('click', markIncomplete)
     deleteExerciseButton.addEventListener('click', deleteFromCalendar)
 }
+
+function activateExerciseInfoButtons() {
+    const exerciseInfoButtons = document.querySelectorAll('.exercise-item-name')
+
+    exerciseInfoButtons.forEach(button => {
+        button.addEventListener('click', showExerciseInfo)
+    })
+}
+
+async function showExerciseInfo(event) {
+    searchTarget = event.target.innerHTML
+    const getExerciseInfo = await axios.get(`http://localhost:3001/exercises/${searchTarget}`)
+    console.log(getExerciseInfo)
+
+        let exerciseData = getExerciseInfo.data
+
+        const instructionsList = document.querySelector('.instructions')
+
+        function removeListItems() {
+            if(instructionsList) {
+                while(instructionsList.firstChild) {
+                    instructionsList.removeChild(instructionsList.firstChild)
+                }
+            }
+        }
+
+        removeListItems()
+
+        $('.exercise-info-modal').show()
+
+        let instructionsCount = exerciseData[0].instructions.length
+
+        for(let i = 0; i < instructionsCount; i++) {
+            const instructionItem = document.createElement('li')
+            instructionsList.appendChild(instructionItem)
+            instructionItem.classList.add('instruction-list-item')
+        }
+
+        const instructionItems = document.querySelectorAll('.instruction-list-item')
+
+        instructionItems.forEach((item, index) => {
+            item.innerText = `${exerciseData[0].instructions[index]}`
+        })
+
+        $('.modal-exercise-title').text(`${exerciseData[0].name}`)
+        $('.demo-image').attr('src', `${exerciseData[0].image}`)
+        $('.reps').text(`Suggested Reps: ${exerciseData[0].reps}`)
+        $('.equipment-info').text(`Equipment required? ${exerciseData[0].equipment}`)
+        $('.primary-muscle').text(`Primary Muscle Group: ${exerciseData[0].primary_muscle_id}`)
+        $('.secondary-muscle').text(`Secondary Muscle Group: ${exerciseData[0].secondary_muscle_id}`)
+        $('.muscle-group-image').attr('src', `${exerciseData[0].muscle_image}`)
+        $('.modal-close-button').click(() => {
+            $('.exercise-info-modal').hide()
+        })
+    }
 
 function showOptions(e) {
     let exerciseOptions = e.target

@@ -621,26 +621,26 @@ body {
     max-width: 390px;
     border-radius: 10px;
     border: white solid 2px;
-    padding: 1rem;
+    padding: 0.5rem;
     text-align: center;
 }
 
 .exercise-title {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .instruction-title {
-    margin-top: 0.5rem;
+    margin-top: 0.25rem;
 }
 
 .instructions {
-    margin: 0.5rem 0;
+    margin: 0.25rem 0;
     text-align: left;
 }
 
 .instruction-list-item {
     list-style-type: none;
-    margin: 0.5rem;
+    margin: 0.25rem;
     font-size: 0.75rem;
 }
 
@@ -649,11 +649,12 @@ body {
 .primary-muscle,
 .secondary-muscle,
 .muscle-group-image {
-    margin-top: 1rem;
+    margin-top: 0.25rem;
+    font-weight: 700;
 }
 
 .modal-exercise-title {
-    margin-bottom: 1rem;
+    margin-bottom: 0.25rem;
 }
 
 
@@ -731,7 +732,9 @@ body {
     }
 
     .page-greeting {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
+        text-align: center;
+        margin-top: 1rem;
     }    
 
     .calendar-container {
