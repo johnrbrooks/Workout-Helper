@@ -459,10 +459,14 @@ async function showChest() {
         addToCalendarButton.innerText = 'Add To Calendar'
         addToCalendarButton.addEventListener('click', (e) => {
             clickedExercise = e.target
-            $('.day-select-modal').show()
-            $('.modal-close-button').click(() => {
+            if(currentUser) {
+                $('.day-select-modal').show()
+                $('.modal-close-button').click(() => {
                 $('.day-select-modal').hide()
             })
+            } else {
+                alert('You must be logged in.')
+            }
         })
         instructionLink.addEventListener('click', async (e) => {
             selectedExercise = e.target
@@ -559,10 +563,14 @@ async function showArms() {
         addToCalendarButton.setAttribute('id', exerciseName.innerText)
         addToCalendarButton.addEventListener('click', (e) => {
             clickedExercise = e.target
-            $('.day-select-modal').show()
-            $('.modal-close-button').click(() => {
+            if(currentUser) {
+                $('.day-select-modal').show()
+                $('.modal-close-button').click(() => {
                 $('.day-select-modal').hide()
             })
+            } else {
+                alert('You must be logged in.')
+            }
         }) 
         instructionLink.addEventListener('click', async (e) => {
             selectedExercise = e.target
@@ -659,10 +667,14 @@ async function showShoulders() {
         addToCalendarButton.setAttribute('id', exerciseName.innerText)
         addToCalendarButton.addEventListener('click', (e) => {
             clickedExercise = e.target
-            $('.day-select-modal').show()
-            $('.modal-close-button').click(() => {
+            if(currentUser) {
+                $('.day-select-modal').show()
+                $('.modal-close-button').click(() => {
                 $('.day-select-modal').hide()
             })
+            } else {
+                alert('You must be logged in.')
+            }
         }) 
         instructionLink.addEventListener('click', async (e) => {
             selectedExercise = e.target
@@ -759,10 +771,14 @@ async function showBack() {
         addToCalendarButton.setAttribute('id', exerciseName.innerText)
         addToCalendarButton.addEventListener('click', (e) => {
             clickedExercise = e.target
-            $('.day-select-modal').show()
-            $('.modal-close-button').click(() => {
+            if(currentUser) {
+                $('.day-select-modal').show()
+                $('.modal-close-button').click(() => {
                 $('.day-select-modal').hide()
             })
+            } else {
+                alert('You must be logged in.')
+            }
         }) 
         instructionLink.addEventListener('click', async (e) => {
             selectedExercise = e.target
@@ -859,10 +875,14 @@ async function showLegs() {
         addToCalendarButton.setAttribute('id', exerciseName.innerText)
         addToCalendarButton.addEventListener('click', (e) => {
             clickedExercise = e.target
-            $('.day-select-modal').show()
-            $('.modal-close-button').click(() => {
+            if(currentUser) {
+                $('.day-select-modal').show()
+                $('.modal-close-button').click(() => {
                 $('.day-select-modal').hide()
             })
+            } else {
+                alert('You must be logged in.')
+            }
         })  
         instructionLink.addEventListener('click', async (e) => {
             selectedExercise = e.target
@@ -959,10 +979,14 @@ async function showAbs() {
         addToCalendarButton.setAttribute('id', exerciseName.innerText)
         addToCalendarButton.addEventListener('click', (e) => {
             clickedExercise = e.target
-            $('.day-select-modal').show()
-            $('.modal-close-button').click(() => {
+            if(currentUser) {
+                $('.day-select-modal').show()
+                $('.modal-close-button').click(() => {
                 $('.day-select-modal').hide()
             })
+            } else {
+                alert('You must be logged in.')
+            }
         })  
         instructionLink.addEventListener('click', async (e) => {
             selectedExercise = e.target
