@@ -375,6 +375,10 @@ body {
     background-color:#4CA82B;
 }
 
+.incomplete {
+    background-color: rgb(202, 99, 99);
+}
+
 .delete {
     background-color: red;
 }

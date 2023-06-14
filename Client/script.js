@@ -217,6 +217,7 @@ async function deleteFromCalendar(user, day, exercise) {
 // CALENDAR PAGE
 
 const markCompleteButton = document.querySelector('#markCompleteButton')
+const markIncompleteButton = document.querySelector('#markIncompleteButton')
 const deleteExerciseButton = document.querySelector('#deleteExerciseButton')
 const closeWindowButton = document.querySelector('#closeWindowButton')
 
@@ -295,22 +296,29 @@ function populateExercises(calendar, dayId) {
             optionsButton.innerHTML = '...'
         })
     }   
-    //activateOptionsButtons()
+    activateOptionsButtons()
 }
 
-/* function activateOptionsButtons() {
+let exerciseToEdit;
+let exerciseToRemove;
+
+function activateOptionsButtons() {
     const moreOptionsButtons = document.querySelectorAll('.more-options-button')
 
     moreOptionsButtons.forEach(button => {
-        button.addEventListener('click', showOptions(e))
+        button.addEventListener('click', showOptions)
     })
     closeWindowButton.addEventListener('click', hideOptions)
     markCompleteButton.addEventListener('click', markComplete)
+    markIncompleteButton.addEventListener('click', markIncomplete)
+
 }
 
 function showOptions(e) {
-    let exerciseOptions = click.target
-    let exerciseToEdit = exerciseOptions.previousElementSibling.innerHTML
+    let exerciseOptions = e.target
+    exerciseToEdit = exerciseOptions.parentNode
+    exerciseToRemove = exerciseOptions.previousElementSibling.innerHTML
+    console.log(exerciseToEdit)
     $('.options-modal').show()
 }
 
@@ -319,8 +327,14 @@ function hideOptions() {
 }
 
 function markComplete() {
+    exerciseToEdit.style.backgroundColor = 'green'
+    hideOptions()
+}
 
-} */
+function markIncomplete() {
+    exerciseToEdit.style.backgroundColor = 'transparent'
+    hideOptions()
+}
 
 
 // EXERCISES GROUPS PAGE
