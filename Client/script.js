@@ -130,6 +130,7 @@ async function addNewUser(newUser) {
 
 $('.day-select-modal').hide()
 $('.exercise-info-modal').hide()
+$('.options-modal').hide()
 
 const daySelectorButtons = document.querySelectorAll('.day-button')
 
@@ -215,6 +216,10 @@ async function deleteFromCalendar(user, day, exercise) {
 
 // CALENDAR PAGE
 
+const markCompleteButton = document.querySelector('#markCompleteButton')
+const deleteExerciseButton = document.querySelector('#deleteExerciseButton')
+const closeWindowButton = document.querySelector('#closeWindowButton')
+
 function updateCalendarGreeting() {
     let user = currentUser.data.name
     const titlesContainer = document.querySelector('.page-titles-container')
@@ -222,6 +227,13 @@ function updateCalendarGreeting() {
     calendarGreeting.classList.add('page-greeting')
     titlesContainer.appendChild(calendarGreeting)
     calendarGreeting.innerHTML = `Hi ${user}! Here's your week so far...`
+}
+
+function clearItems() {
+    const itemsToClear = document.querySelectorAll('.item-to-clear')
+    itemsToClear.forEach(item => {
+        item.parentNode.removeChild(item)
+    })
 }
 
 async function getCalendarData() {
@@ -233,100 +245,83 @@ async function getCalendarData() {
 }
 
 function getExercises(calendar) {
-    
+    let daysToPopulate = []
+    for (let key in calendar) {
+        if(Array.isArray(calendar[key]) && calendar[key].length === 0) {
+            continue;
+        } 
+        if(!Array.isArray(calendar[key])) {
+            continue;
+        }
+        daysToPopulate.push(key)
+    }
+    console.log(daysToPopulate)
+    populateDays(calendar, daysToPopulate)
 }
 
-/* const dayContainers = document.querySelectorAll('.day-label')
-
-dayContainers.forEach(day => {
-    day.addEventListener('click', (e) => showExercises(e))
-})
-
-function showExercises(e) {
-    let selectedDay = $(e.currentTarget)
-    let dayName = selectedDay.text()
-
-    switch(dayName) {
-        case 'Monday':
-            if($('.exercises-monday').css('display') === 'block') {
-                $('.exercises-monday').css('display', 'none')
-            } else {
-                $('.exercises-monday').css('display', 'block')
-            }
-            break
-        case 'Tuesday':
-            if($('.exercises-tuesday').css('display') === 'block') {
-                $('.exercises-tuesday').css('display', 'none')
-            } else {
-                $('.exercises-tuesday').css('display', 'block')
-            }            break
-        case 'Wednesday':
-            if($('.exercises-wednesday').css('display') === 'block') {
-                $('.exercises-wednesday').css('display', 'none')
-            } else {
-                $('.exercises-wednesday').css('display', 'block')
-            }            break
-        case 'Thursday':
-            if($('.exercises-thursday').css('display') === 'block') {
-                $('.exercises-thursday').css('display', 'none')
-            } else {
-                $('.exercises-thursday').css('display', 'block')
-            }            break
-        case 'Friday':
-            if($('.exercises-friday').css('display') === 'block') {
-                $('.exercises-friday').css('display', 'none')
-            } else {
-                $('.exercises-friday').css('display', 'block')
-            }            break
-        case 'Saturday':
-            if($('.exercises-saturday').css('display') === 'block') {
-                $('.exercises-saturday').css('display', 'none')
-            } else {
-                $('.exercises-saturday').css('display', 'block')
-            }            break
-        case 'Sunday':
-            if($('.exercises-sunday').css('display') === 'block') {
-                $('.exercises-sunday').css('display', 'none')
-            } else {
-                $('.exercises-sunday').css('display', 'block')
-            }            break
-        default:
-            break
-    } 
+function populateDays(calendar, daysToPopulate) {
+    const calendarDays = document.querySelectorAll('.day-container')
+    calendarDays.forEach(day => {
+        if(daysToPopulate.includes(day.id)) {
+            let dayId = day.id            
+            populateExercises(calendar, dayId)
+        } 
+    })
 }
 
-const completedButtons = document.querySelectorAll('.fa-square-check')
-const exerciseItems = document.querySelectorAll('.exercise')
-const uncheckButtons = document.querySelectorAll('.fa-xmark')
-const checkButton = document.querySelector('.fa-square-check')
+function populateExercises(calendar, dayId) {
+    let parentDiv = document.querySelector(`#${dayId}`)
+    let exerciseArray = calendar[dayId]
 
-$(uncheckButtons).hide()
+    const existingItems = parentDiv.querySelectorAll('.item-to-clear')
+    if(existingItems.length > 0) {
+        return;
+    } else {
+        exerciseArray.forEach((exercise, index) => {
+            //create Div
+            const exerciseContainer = document.createElement('div')
+            exerciseContainer.classList.add('exercise-container')
+            exerciseContainer.classList.add('item-to-clear')
+            parentDiv.appendChild(exerciseContainer)
+            //create Name
+            const exerciseItemName = document.createElement('h3')
+            exerciseItemName.classList.add('exercise-item-name')
+            exerciseContainer.appendChild(exerciseItemName)
+            exerciseItemName.innerHTML = `${exercise.name}`
+            //create Button
+            const optionsButton = document.createElement('h2')
+            optionsButton.classList.add('more-options-button')
+            exerciseContainer.appendChild(optionsButton)
+            optionsButton.innerHTML = '...'
+        })
+    }   
+    //activateOptionsButtons()
+}
 
-let selectedExerciseCheck;
-let selectedExerciseUncheck
+/* function activateOptionsButtons() {
+    const moreOptionsButtons = document.querySelectorAll('.more-options-button')
 
-completedButtons.forEach((button, index) => {
-    button.addEventListener('click', (e) => {
-        selectedExerciseCheck = e.target
-        selectedExercise = e.target.closest('div')
-        selectedExerciseUncheck = uncheckButtons[index]
-        $(selectedExercise).data('check-button', selectedExerciseCheck)
-        completeExercise()
+    moreOptionsButtons.forEach(button => {
+        button.addEventListener('click', showOptions(e))
     })
-})
+    closeWindowButton.addEventListener('click', hideOptions)
+    markCompleteButton.addEventListener('click', markComplete)
+}
 
-function completeExercise() {
-    $(selectedExercise).css('background-color', 'rgb(76, 168, 43)')
-    $(selectedExerciseCheck).hide()
-    $(selectedExerciseUncheck).show().on('click', (e) => {
-        selectedExercise = $(e.target).closest('div')
-        selectedExerciseCheck = $(selectedExercise).data('check-button')
-        selectedExerciseUncheck = $(e.target)
-        $(selectedExercise).css('background-color', 'rgb(116, 156, 255)')
-        $(selectedExerciseUncheck).hide()
-        $(selectedExerciseCheck).show()
-    })
+function showOptions(e) {
+    let exerciseOptions = click.target
+    let exerciseToEdit = exerciseOptions.previousElementSibling.innerHTML
+    $('.options-modal').show()
+}
+
+function hideOptions() {
+    $('.options-modal').hide()
+}
+
+function markComplete() {
+
 } */
+
 
 // EXERCISES GROUPS PAGE
 

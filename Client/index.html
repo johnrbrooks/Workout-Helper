@@ -60,23 +60,23 @@
     </div>
     <!--CALENDAR PAGE-->
     <div class="calendar-page">
-        <div class="page-titles-container">
+        <div class="page-titles-container item-to-clear">
         </div>
         <div class="calendar-container">
-            <div class="day-container">
+            <div class="day-container" id="monday">
                 <div class="day-content">
                     <h2 class="day-title">Monday</h2>
                 </div>
                 <div class="day-exercises">
                     <!--Prototype exercise item-->
-                    <div class="exercise-container">
+                    <!-- <div class="exercise-container">
                         <h3 class="exercise-item-name">Bench Press</h3>
                         <h2 class="more-options-button">...</h2>
-                    </div>
+                    </div> -->
                     <!--Prototype exercise item-->
                 </div>
             </div>
-            <div class="day-container">
+            <div class="day-container" id="tuesday">
                 <div class="day-content">
                     <h2 class="day-title">Tuesday</h2>
                 </div>
@@ -84,7 +84,7 @@
                     
                 </div>
             </div>
-            <div class="day-container">
+            <div class="day-container" id="wednesday">
                 <div class="day-content">
                     <h2 class="day-title">Wednesday</h2>
                 </div>
@@ -92,7 +92,7 @@
                     
                 </div>
             </div>
-            <div class="day-container">
+            <div class="day-container" id="thursday">
                 <div class="day-content">
                     <h2 class="day-title">Thursday</h2>
                 </div>
@@ -100,7 +100,7 @@
                     
                 </div>
             </div>
-            <div class="day-container">
+            <div class="day-container" id="friday">
                 <div class="day-content">
                     <h2 class="day-title">Friday</h2>
                 </div>
@@ -108,7 +108,7 @@
                     
                 </div>
             </div>
-            <div class="day-container">
+            <div class="day-container" id="saturday">
                 <div class="day-content">
                     <h2 class="day-title">Saturday</h2>
                 </div>
@@ -116,7 +116,7 @@
                     
                 </div>
             </div>
-            <div class="day-container">
+            <div class="day-container" id="sunday">
                 <div class="day-content">
                     <h2 class="day-title">Sunday</h2>
                 </div>
@@ -124,7 +124,14 @@
                     
                 </div>
             </div>
-        </div> 
+        </div>
+        <aside class="options-modal">
+            <div class="options-modal-content">
+                <button class="option-button complete" id="markCompleteButton">Mark Complete</button>
+                <button class="option-button delete" id="deleteExerciseButton">Delete Exercise</button>
+                <button class="option-button close" id="closeWindowButton">Close Window</button>
+            </div>
+        </aside> 
     </div>
     <!--EXERCISES GROUPS PAGE-->
     <div class="exercises-group-page">

@@ -317,13 +317,71 @@ body {
 
 .more-options-button:hover {
     cursor: pointer;
+    color:#506dff;
 }
 
 .exercise-item-name {
     padding: 0 0.5rem;
 }
 
+.exercise-item-name:hover {
+    cursor: pointer;
+    color:#506dff;
+}
 
+.options-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 999;
+}
+
+.options-modal-content {
+    width: 230px;
+    height: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border-radius: 10px;
+    border: white solid 2px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.option-button {
+    margin: 0.5rem 0;
+    padding: 0.5rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 700;
+    border: none;
+    color: white;
+}
+
+.option-button:hover {
+    border: 2px white solid;
+    cursor: pointer;
+}
+
+.complete {
+    background-color:#4CA82B;
+}
+
+.delete {
+    background-color: red;
+}
+
+.close {
+    background-color:#0C2AC7;
+}
 
 /* MUSCLE GROUPS PAGE */
 
