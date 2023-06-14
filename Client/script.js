@@ -59,7 +59,7 @@ async function validateUserLogin(user, password) {
         }
     } catch (error) {
         if(error.response && error.response.status === 500) {
-            alert('Incorrect password, try again.')
+            alert('Incorrect Username or Password, please try again.')
         }
     } finally {
         $('#loginForm')[0].reset()
@@ -148,18 +148,11 @@ function collectInfo(event) {
 }
 
 async function addToCalendar(user, day, exercise) {
-    const addItemToCalendar = await axios.put(`http://localhost:3001/calendars/add/${user}-${day}-${exercise}`)
+    const addItemToCalendar = await axios.put(`http://localhost:3001/calendars/add/${user}@${day}@${exercise}`)
     if(addItemToCalendar) {
         console.log(addItemToCalendar)
     }
     $('.day-select-modal').hide()
-}
-
-async function deleteFromCalendar(user, day, exercise) {
-    const removeItemFromCalendar = await axios.put(`http://localhost:3001/calendars/remove/${user}-${day}-${exercise}`)
-    if(removeItemFromCalendar) {
-        console.log(removeItemFromCalendar)
-    }
 }
 
 // HAMBURGER MENU
@@ -224,10 +217,14 @@ const closeWindowButton = document.querySelector('#closeWindowButton')
 function updateCalendarGreeting() {
     let user = currentUser.data.name
     const titlesContainer = document.querySelector('.page-titles-container')
-    const calendarGreeting = document.createElement('h1')
-    calendarGreeting.classList.add('page-greeting')
-    titlesContainer.appendChild(calendarGreeting)
-    calendarGreeting.innerHTML = `Hi ${user}! Here's your week so far...`
+    if(!titlesContainer.querySelector('.page-greeting')) {
+        const calendarGreeting = document.createElement('h1')
+        calendarGreeting.classList.add('page-greeting')
+        titlesContainer.appendChild(calendarGreeting)
+        calendarGreeting.innerHTML = `Hi ${user}! Here's your week so far...`
+    } else{
+        return;
+    }
 }
 
 function clearItems() {
@@ -301,6 +298,7 @@ function populateExercises(calendar, dayId) {
 
 let exerciseToEdit;
 let exerciseToRemove;
+let dayOfExercise;
 
 function activateOptionsButtons() {
     const moreOptionsButtons = document.querySelectorAll('.more-options-button')
@@ -311,12 +309,13 @@ function activateOptionsButtons() {
     closeWindowButton.addEventListener('click', hideOptions)
     markCompleteButton.addEventListener('click', markComplete)
     markIncompleteButton.addEventListener('click', markIncomplete)
-
+    deleteExerciseButton.addEventListener('click', deleteFromCalendar)
 }
 
 function showOptions(e) {
     let exerciseOptions = e.target
     exerciseToEdit = exerciseOptions.parentNode
+    dayOfExercise = exerciseToEdit.parentNode.id
     exerciseToRemove = exerciseOptions.previousElementSibling.innerHTML
     console.log(exerciseToEdit)
     $('.options-modal').show()
@@ -334,6 +333,20 @@ function markComplete() {
 function markIncomplete() {
     exerciseToEdit.style.backgroundColor = 'transparent'
     hideOptions()
+}
+
+async function deleteFromCalendar() {
+    user = currentUser.data.username
+    const removeItemFromCalendar = await axios.put(`http://localhost:3001/calendars/remove/${user}@${dayOfExercise}@${exerciseToRemove}`)
+    if(removeItemFromCalendar) {
+        console.log(removeItemFromCalendar)
+        hideOptions()
+        deleteCalendarItem()
+    }
+}
+
+function deleteCalendarItem() {
+    exerciseToEdit.remove()
 }
 
 
