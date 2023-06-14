@@ -53,7 +53,7 @@ async function validateUserLogin(user, password) {
             $('.calendar-page').css('display', 'flex')
             $('#hamburger').css('display', 'block')
             updateCalendarGreeting()
-            getCalendarData()
+            await getCalendarData()
         } else {
             alert('Wrong Username or Password')
         }
@@ -173,7 +173,7 @@ async function addToCalendar(user, day, exercise) {
     const exerciseGroupsPage = document.querySelector('.exercises-group-page')
     const exercisesDisplayPage = document.querySelector('.exercises-display-page')
 
-    calendarButton.addEventListener('click', () => {
+    calendarButton.addEventListener('click', async () => {
         menuButton.classList.remove('is-active')
         menuContainer.classList.remove('is-active')
         userLoginPage.style.display = 'none'
@@ -182,7 +182,7 @@ async function addToCalendar(user, day, exercise) {
         exercisesDisplayPage.style.display = 'none'
         calendarPage.style.display = 'flex'
         updateCalendarGreeting()
-        getCalendarData()
+        await getCalendarData()
     })
 
     exercisesButton.addEventListener('click', () => {
@@ -215,15 +215,24 @@ const deleteExerciseButton = document.querySelector('#deleteExerciseButton')
 const closeWindowButton = document.querySelector('#closeWindowButton')
 
 function updateCalendarGreeting() {
-    let user = currentUser.data.name
-    const titlesContainer = document.querySelector('.page-titles-container')
-    if(!titlesContainer.querySelector('.page-greeting')) {
-        const calendarGreeting = document.createElement('h1')
-        calendarGreeting.classList.add('page-greeting')
-        titlesContainer.appendChild(calendarGreeting)
-        calendarGreeting.innerHTML = `Hi ${user}! Here's your week so far...`
-    } else{
+    if(currentUser === null || currentUser === undefined) {
+        console.log('There is no current user')
+        const existingItems = document.querySelectorAll('.item-to-clear')
+        if(existingItems.length > 0) {
+            existingItems.forEach(item => item.remove())
+        }
         return;
+    } else {
+        let user = currentUser.data.name
+        const titlesContainer = document.querySelector('.page-titles-container')
+        if(!titlesContainer.querySelector('.page-greeting')) {
+            const calendarGreeting = document.createElement('h1')
+            calendarGreeting.classList.add('page-greeting')
+            titlesContainer.appendChild(calendarGreeting)
+            calendarGreeting.innerHTML = `Hi ${user}! Here's your week so far...`
+        } else{
+            return;
+        }
     }
 }
 
@@ -235,11 +244,16 @@ function clearItems() {
 }
 
 async function getCalendarData() {
-    let user = currentUser.data.username
-    const getCalendarData = await axios.get(`http://localhost:3001/calendars/${user}`)
-    console.log(getCalendarData)
-    const calendar = getCalendarData.data
-    getExercises(calendar)
+    if(currentUser === null || currentUser === undefined) {
+        console.log('There is no current user')
+        return;
+    } else {
+        let user = currentUser.data.username
+        const getCalendarData = await axios.get(`http://localhost:3001/calendars/${user}`)
+        console.log(getCalendarData)
+        const calendar = getCalendarData.data
+        getExercises(calendar)
+    }
 }
 
 function getExercises(calendar) {
