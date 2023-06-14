@@ -32,7 +32,7 @@ body {
 }
 
 .user-login-page {
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -54,7 +54,8 @@ body {
 }
 
 .calendar-page {
-    display: flex;
+    display: none;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: auto;
@@ -272,67 +273,59 @@ body {
 
 /* CALENDAR PAGE */
 
+.page-greeting {
+    font-size: 3rem;
+}
+
+.calendar-container {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    justify-content: center;
+    align-items: start;
+    width: 90vw;
+    border-radius: 10px;
+    min-height: 60vh;
+}
+
 .day-container {
-    width: 12rem;
-    text-align: center;
-    margin: 1.5rem 1rem;
-    background-color: rgb(45, 100, 152);
+    margin: 1rem 0.5rem;
+}
+
+.day-content {
+    border: white solid 2px;
     border-radius: 10px;
-}
-
-.day-container:hover {
-    cursor: pointer;
-    background-color: rgb(75, 132, 185);
-    transform: translateY(-2px);
-}
-
-.day-label {
-    font-size: 1.5rem;
-}
-
-.exercise {
+    padding: 0.5rem 2rem;
+    background-color: rgb(68, 68, 68);
     text-align: center;
-    background-color: #749cff;
-    margin: 0.5rem 0;
-    padding: 0.3rem 2.5rem;
-    border-radius: 10px;
+}
+
+.exercise-container {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    position: relative;
+    border: rgb(147, 147, 147) solid 1px;
+    border-radius: 10px;
+    margin-top: 0.5rem;
 }
 
-.exercises {
-    display: flex;
-    flex-direction: column;
+.more-options-button {
+    padding: 0 0 0.6rem 0;
+    margin-right: 0.5rem;
 }
 
-.exercise:hover {
+.more-options-button:hover {
     cursor: pointer;
-    background-color: #9ebaff; 
-    transform: translateY(-2px);
 }
 
-.fa-square-check {
-    padding: 0.75rem 0.25rem;
-    position: absolute;
-    right: 0;
+.exercise-item-name {
+    padding: 0 0.5rem;
 }
 
-.fa-xmark {
-    display: none;
-    padding: 0.75rem 0.25rem;
-    position: absolute;
-    right: 0;
-}
 
-.exercises-monday, 
-.exercises-tuesday, 
-.exercises-wednesday, 
-.exercises-thursday, 
-.exercises-friday, 
-.exercises-saturday, .exercises-sunday {
-    display: none;
-}
+
+/* MUSCLE GROUPS PAGE */
 
 .muscle-groups-grid {
     display: grid;
@@ -604,6 +597,19 @@ body {
 
 /* RESPONSIVENESS */
 
+@media screen and (max-width: 1250px) {
+    .page-greeting {
+        font-size: 2.5rem;
+    }    
+
+    .calendar-container {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        min-height: 50vh;
+    }
+}
+
 @media screen and (max-width: 500px) {
     .username-label {
         font-size: 1rem;
@@ -660,5 +666,16 @@ body {
         padding: 6rem;
         max-width: 18rem;
         min-width: 18rem;
+    }
+
+    .page-greeting {
+        font-size: 1.75rem;
+    }    
+
+    .calendar-container {
+        margin-top: 1.5rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        min-height: 40vh;
     }
 }

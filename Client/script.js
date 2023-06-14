@@ -52,6 +52,8 @@ async function validateUserLogin(user, password) {
             $('.user-login-page').css('display', 'none')
             $('.calendar-page').css('display', 'flex')
             $('#hamburger').css('display', 'block')
+            updateCalendarGreeting()
+            getCalendarData()
         } else {
             alert('Wrong Username or Password')
         }
@@ -185,6 +187,8 @@ async function deleteFromCalendar(user, day, exercise) {
         exerciseGroupsPage.style.display = 'none'
         exercisesDisplayPage.style.display = 'none'
         calendarPage.style.display = 'flex'
+        updateCalendarGreeting()
+        getCalendarData()
     })
 
     exercisesButton.addEventListener('click', () => {
@@ -210,6 +214,27 @@ async function deleteFromCalendar(user, day, exercise) {
 
 
 // CALENDAR PAGE
+
+function updateCalendarGreeting() {
+    let user = currentUser.data.name
+    const titlesContainer = document.querySelector('.page-titles-container')
+    const calendarGreeting = document.createElement('h1')
+    calendarGreeting.classList.add('page-greeting')
+    titlesContainer.appendChild(calendarGreeting)
+    calendarGreeting.innerHTML = `Hi ${user}! Here's your week so far...`
+}
+
+async function getCalendarData() {
+    let user = currentUser.data.username
+    const getCalendarData = await axios.get(`http://localhost:3001/calendars/${user}`)
+    console.log(getCalendarData)
+    const calendar = getCalendarData.data
+    getExercises(calendar)
+}
+
+function getExercises(calendar) {
+    
+}
 
 /* const dayContainers = document.querySelectorAll('.day-label')
 
