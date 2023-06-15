@@ -24,12 +24,11 @@ const titlesContainer = document.querySelector('.page-titles-container')
 
 loginButton.addEventListener('click', checkLoginForm)
 
-/* loginButton.addEventListener('keydown', (event) => {
-    console.log(event.key)
+document.addEventListener('keydown', (event) => {
     if(event.key === 'Enter') {
         checkLoginForm()
     }
-}) */
+})
 
 function checkLoginForm() {
     user = userUsernameInput.value
@@ -229,7 +228,6 @@ async function getCalendarData() {
     const calendar = getCalendarData.data
     getExercises(calendar)
 }
-
 
 function getExercises(calendar) {
     let daysToPopulate = []
@@ -468,6 +466,10 @@ async function showChest() {
 
     let dataArray = getChestExercises.data
 
+    const exerciseDivs = document.querySelectorAll('.exerciseDiv')
+
+    exerciseDivs.forEach(div => div.remove())
+
     dataArray.forEach((exercise, index) => {
         //create exercise div
         const chestExercise = document.createElement('div')
@@ -571,6 +573,10 @@ async function showArms() {
     $('.day-select-modal').hide()
 
     let dataArray = getArmExercises.data
+
+    const exerciseDivs = document.querySelectorAll('.exerciseDiv')
+
+    exerciseDivs.forEach(div => div.remove())
 
     dataArray.forEach((exercise, index) => {
         //create exercise div
@@ -676,6 +682,10 @@ async function showShoulders() {
 
     let dataArray = getShoulderExercises.data
 
+const exerciseDivs = document.querySelectorAll('.exerciseDiv')
+
+    exerciseDivs.forEach(div => div.remove())
+
     dataArray.forEach((exercise, index) => {
         //create exercise div
         const shoulderExercise = document.createElement('div')
@@ -779,6 +789,10 @@ async function showBack() {
     $('.day-select-modal').hide()
 
     let dataArray = getBackExercises.data
+
+const exerciseDivs = document.querySelectorAll('.exerciseDiv')
+
+    exerciseDivs.forEach(div => div.remove())
 
     dataArray.forEach((exercise, index) => {
         //create exercise div
@@ -884,6 +898,10 @@ async function showLegs() {
 
     let dataArray = getLegExercises.data
 
+const exerciseDivs = document.querySelectorAll('.exerciseDiv')
+
+    exerciseDivs.forEach(div => div.remove())
+
     dataArray.forEach((exercise, index) => {
         //create exercise div
         const legExercise = document.createElement('div')
@@ -988,6 +1006,10 @@ async function showAbs() {
 
     let dataArray = getAbExercises.data
 
+const exerciseDivs = document.querySelectorAll('.exerciseDiv')
+
+    exerciseDivs.forEach(div => div.remove())
+    
     dataArray.forEach((exercise, index) => {
         //create exercise div
         const abExercise = document.createElement('div')
