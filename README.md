@@ -1,10 +1,18 @@
-# Workout-Helper
+# My Fitness Calendar
 A full-stack workout manager app!
 
-![Gym Image](https://www.hussle.com/blog/wp-content/uploads/2020/12/Gym-structure-1080x675.png)
+![My Fitness Calendar](https://github.com/quark934/Workout-Helper/assets/130618148/40aa6808-0bc4-41a9-b59e-2581ff1c8d3d)
 
-## Application Goal
-Create a full-stack web application that allows a user to build a calendar and populate it with chosen or randomized workouts to do on a given day based on a database of workouts.
+## Technologies Used
+
+### Front-end
+Languages: HTML5, CSS3, Vanilla JS
+Frameworks: jQuery
+
+### Back-end
+Languages: Vanilla JS
+Frameworks: Mongoose
+Database: MongoDB
 
 ## WireFrame
 [WireFrame](https://www.figma.com/file/jwINMRSlwgrTwwPzc3fgWT/Workout-Helper-WireFrame?type=design&node-id=0-1&t=fHSbV9vZk2kDJvVC-0)
@@ -15,45 +23,16 @@ Create a full-stack web application that allows a user to build a calendar and p
 ## Trello Board
 [Trello](https://trello.com/b/CZ1hU6sU/my-fitness-calendar)
 
-# Primary Functionality
-
 ## Data Entities
-1. Calendar
-2. Days
+1. User
+2. Calendar
 3. Exercises
-4. User (Stretch)
-5. User Preferred Exercises (Stretch)
 
-## Calendar
-1. Monday through Friday Calendar Cards
-2. Each Card allows you to populate it with workouts you'd like to do on that day
-3. Every individual workout card allows you to open it and see a description of the workout and an image/gif of how to do it
-4. This will require full front-end CRUD implementation as you will need to be able to add workouts, read workouts, update workout choices, and delete workouts from the page
+## Next Steps
+1. Allow the user to rearrrange the order of exercises on the calendar
+2. Allow the user to add their own exercises to the database
+3. Allow the user to re-arrange by clicking and dragging the exercise elements within the calendar
 
-## Exercise Database
-1. Each exercise object should have a title/name, an image/gif of how to do the exercise, a description, a suggested reps count based on beginner-advanced, and equipment necessary.
-2. A user should be able to add new exercises to the database with these parameters 
-3. A user should be able to update new exercises to the database with these parameters
-4. A user should be able to delete new exercises from the database with these parameters
-
-## Search
-1. Find workouts within the database based on particular criteria
-2. Add/remove those workouts to specific days on the calendar
-
-# Stretch Functionality
-
-## User Login
-1. A user should be able to login to the application to pull their specific data/calendar
-2. This should require password creation (OAuth through Google would be optimal and is my goal)
-3. Log Out functionality to switch users
-
-## User Database
-1. A user should able able to login either through Google OAuth or a username/password
-2. Each User should have a saved calendar that they can continue to fully CRUD that is saved from previous entries
-3. A user should be able to save exercises as preferred exercises
-
-## Preferred Exercises
-1. A user should be able to generate a workout routine for a particular day that randomizes their preferred exercises and picks a selection
 
 
 
