@@ -46,9 +46,9 @@ async function validateUserLogin(user, password) {
     try{
         const checkLoginInfo = await axios.get(`http://localhost:3001/users/login/${userLoginRequest}-${passwordLoginRequest}`)
         if(checkLoginInfo) {
-            console.log('Login Sucessful!')
+            //console.log('Login Sucessful!')
             currentUser = checkLoginInfo.data
-            console.log(currentUser)
+            //console.log(currentUser)
             $('.user-login-page').css('display', 'none')
             $('.calendar-page').css('display', 'flex')
             $('#hamburger').css('display', 'block')
@@ -145,16 +145,16 @@ daySelectorButtons.forEach(button => {
 function collectInfo(event) {
     let buttonClicked = event.target
     let day = buttonClicked.innerHTML.toLowerCase()
-    let user = currentUser.data.username.toLowerCase()
+    let user = currentUser.username.toLowerCase()
     let exercise = clickedExercise.id
-    console.log(day, user, exercise)
+    //console.log(day, user, exercise)
     addToCalendar(user, day, exercise)
 }
 
 async function addToCalendar(user, day, exercise) {
     const addItemToCalendar = await axios.put(`http://localhost:3001/calendars/add/${user}@${day}@${exercise}`)
     if(addItemToCalendar) {
-        console.log(addItemToCalendar)
+        //console.log(addItemToCalendar)
     }
     $('.day-select-modal').hide()
 }
@@ -224,7 +224,7 @@ const closeWindowButton = document.querySelector('#closeWindowButton')
 async function getCalendarData() {
     let user = currentUser.username
     const getCalendarData = await axios.get(`http://localhost:3001/calendars/${user}`)
-    console.log(getCalendarData)
+    //console.log(getCalendarData)
     const calendar = getCalendarData.data
     getExercises(calendar)
 }
@@ -240,7 +240,7 @@ function getExercises(calendar) {
         }
         daysToPopulate.push(key)
     }
-    console.log(daysToPopulate)
+    //console.log(daysToPopulate)
     populateDays(calendar, daysToPopulate)
 }
 
@@ -311,7 +311,7 @@ function activateExerciseInfoButtons() {
 async function showExerciseInfo(event) {
     searchTarget = event.target.innerHTML
     const getExerciseInfo = await axios.get(`http://localhost:3001/exercises/${searchTarget}`)
-    console.log(getExerciseInfo)
+    //console.log(getExerciseInfo)
 
         let exerciseData = getExerciseInfo.data
 
@@ -360,7 +360,7 @@ function showOptions(e) {
     exerciseToEdit = exerciseOptions.parentNode
     dayOfExercise = exerciseToEdit.parentNode.id
     exerciseToRemove = exerciseOptions.previousElementSibling.innerHTML
-    console.log(exerciseToEdit)
+    //console.log(exerciseToEdit)
     $('.options-modal').show()
 }
 
@@ -379,10 +379,10 @@ function markIncomplete() {
 }
 
 async function deleteFromCalendar() {
-    user = currentUser.data.username
+    user = currentUser.username
     const removeItemFromCalendar = await axios.put(`http://localhost:3001/calendars/remove/${user}@${dayOfExercise}@${exerciseToRemove}`)
     if(removeItemFromCalendar) {
-        console.log(removeItemFromCalendar)
+        //console.log(removeItemFromCalendar)
         hideOptions()
         deleteCalendarItem()
     }
