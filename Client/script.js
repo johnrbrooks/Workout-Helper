@@ -20,6 +20,7 @@ let userPassword;
 const loginButton = document.querySelector('#loginButton')
 const userUsernameInput = document.querySelector('#userUsernameInput')
 const userPasswordInput = document.querySelector('#userPasswordInput')
+const titlesContainer = document.querySelector('.page-titles-container')
 
 loginButton.addEventListener('click', checkLoginForm)
 
@@ -47,13 +48,17 @@ async function validateUserLogin(user, password) {
         const checkLoginInfo = await axios.get(`http://localhost:3001/users/login/${userLoginRequest}-${passwordLoginRequest}`)
         if(checkLoginInfo) {
             console.log('Login Sucessful!')
-            currentUser = checkLoginInfo
+            currentUser = checkLoginInfo.data
             console.log(currentUser)
             $('.user-login-page').css('display', 'none')
             $('.calendar-page').css('display', 'flex')
             $('#hamburger').css('display', 'block')
-            updateCalendarGreeting()
-            await getCalendarData()
+            const calendarGreeting = document.createElement('h1')
+            calendarGreeting.classList.add('page-greeting')
+            calendarGreeting.classList.add('item-to-clear')
+            titlesContainer.appendChild(calendarGreeting)
+            calendarGreeting.innerText = `Hi ${currentUser.name}! Here's your week so far...`
+            getCalendarData()
         } else {
             alert('Wrong Username or Password')
         }
@@ -181,8 +186,7 @@ async function addToCalendar(user, day, exercise) {
         exerciseGroupsPage.style.display = 'none'
         exercisesDisplayPage.style.display = 'none'
         calendarPage.style.display = 'flex'
-        updateCalendarGreeting()
-        await getCalendarData()
+        getCalendarData()
     })
 
     exercisesButton.addEventListener('click', () => {
@@ -204,6 +208,10 @@ async function addToCalendar(user, day, exercise) {
         exerciseGroupsPage.style.display = 'none'
         userLoginPage.style.display = 'flex'
         currentUser = null
+        const existingItems = document.querySelectorAll('.item-to-clear')
+        if(existingItems.length > 0) {
+            existingItems.forEach(item => item.remove())
+        }
     })
 
 
@@ -214,47 +222,14 @@ const markIncompleteButton = document.querySelector('#markIncompleteButton')
 const deleteExerciseButton = document.querySelector('#deleteExerciseButton')
 const closeWindowButton = document.querySelector('#closeWindowButton')
 
-function updateCalendarGreeting() {
-    if(currentUser === null || currentUser === undefined) {
-        console.log('There is no current user')
-        const existingItems = document.querySelectorAll('.item-to-clear')
-        if(existingItems.length > 0) {
-            existingItems.forEach(item => item.remove())
-        }
-        return;
-    } else {
-        let user = currentUser.data.name
-        const titlesContainer = document.querySelector('.page-titles-container')
-        if(!titlesContainer.querySelector('.page-greeting')) {
-            const calendarGreeting = document.createElement('h1')
-            calendarGreeting.classList.add('page-greeting')
-            titlesContainer.appendChild(calendarGreeting)
-            calendarGreeting.innerHTML = `Hi ${user}! Here's your week so far...`
-        } else{
-            return;
-        }
-    }
-}
-
-function clearItems() {
-    const itemsToClear = document.querySelectorAll('.item-to-clear')
-    itemsToClear.forEach(item => {
-        item.parentNode.removeChild(item)
-    })
-}
-
 async function getCalendarData() {
-    if(currentUser === null || currentUser === undefined) {
-        console.log('There is no current user')
-        return;
-    } else {
-        let user = currentUser.data.username
-        const getCalendarData = await axios.get(`http://localhost:3001/calendars/${user}`)
-        console.log(getCalendarData)
-        const calendar = getCalendarData.data
-        getExercises(calendar)
-    }
+    let user = currentUser.username
+    const getCalendarData = await axios.get(`http://localhost:3001/calendars/${user}`)
+    console.log(getCalendarData)
+    const calendar = getCalendarData.data
+    getExercises(calendar)
 }
+
 
 function getExercises(calendar) {
     let daysToPopulate = []
