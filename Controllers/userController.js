@@ -1,5 +1,7 @@
 const { Users } = require('../Models')
+const { Calendar } = require('../Models')
 const userSchema = require('../Models/user')
+const calendarSchema = require('../Models/calendar')
 
 const createUser = async (req, res) => {
     try {
@@ -51,9 +53,32 @@ const getUsers = async (req, res) => {
     } 
 }
 
+const deleteUser = async (req, res) => {
+    try {
+        const { deleteRequestInfo } = req.params
+        let username = deleteRequestInfo
+
+        const userCalendar = await Calendar.deleteOne({ user_username: `${username}`})
+        if(!userCalendar) {
+            return res.status(404).json({ message: 'Calendar not found' })
+        }
+
+        const userData = await Users.deleteOne({ username: `${username}` })
+        if(!userData) {
+            return res.status(404).json({ message: 'User not found' })
+        }
+
+        res.json(`${username}'s account and calendar has been deleted!`)
+
+    } catch (error) {
+        return res.status(500).json({ error: error.message })
+    }
+}
+
 module.exports = {
     createUser,
     getUser,
     getUsers,
-    getLoginInfo
+    getLoginInfo,
+    deleteUser
 }

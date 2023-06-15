@@ -7,5 +7,6 @@ Router.get('/', userController.getUsers)
 Router.get('/:username', userController.getUser)
 Router.get('/login/:usernamepassword', userController.getLoginInfo)
 Router.post('/createuser', userController.createUser)
+Router.delete('/deleteuser/:deleteRequestInfo', userController.deleteUser)
 
 module.exports = Router

@@ -85,6 +85,10 @@ createAccountButton.addEventListener('click', () => {
     newName = newNameInput.value
     newUsername = newUsernameInput.value.toLowerCase()
     newPassword = newPasswordInput.value
+    if(newUsername.includes('@') || newUsername.includes('-')) {
+        alert('Your username cannot contain @ or - symbols.')
+        return;
+    }
     if((newName !== '' && newName !== 'undefined') && (newUsername !== '' && newUsername !== 'undefined') && (newPassword !== '' && newPassword !== 'undefined')) {
         createNewUser(newName, newUsername, newPassword)
     } else {
@@ -126,8 +130,57 @@ async function addNewUser(newUser) {
         sunday: [],
     }
     createUserCalendar = await axios.post('http://localhost:3001/calendars/createcalendar', newCalendar)
+    alert('Your user and calendar have been created!')
     $('.create-account-page').css('display', 'none')
     $('.user-login-page').css('display', 'flex')
+}
+
+//DELETE ACCOUNT
+
+const deleteAccountButton = document.querySelector('#deleteAccountButton')
+
+deleteAccountButton.addEventListener('click', checkUserInfo)
+
+function checkUserInfo() {
+    user = userUsernameInput.value.toLowerCase()
+    password = userPasswordInput.value
+    if((user !== '' && user !== 'undefined') && (password !== '' && password !== 'undefined')) {
+        validateUserDeletion(user, password)
+    } else {
+        alert('Please input your user information')
+    }
+}
+
+async function validateUserDeletion(user, password) {
+    const userLoginRequest = user
+    const passwordLoginRequest = password
+    try {
+        const checkLoginInfo = await axios.get(`http://localhost:3001/users/login/${userLoginRequest}-${passwordLoginRequest}`)
+        if(checkLoginInfo) {
+            //console.log('User Exists')
+            deleteUser(userLoginRequest)
+        } else {
+            alert('Wrong Username or Password')
+        }
+    } catch (error) {
+        if(error.response && error.response.status === 500) {
+            alert('Incorrect Username or Password, please try again.')
+        }
+    } finally {
+        $('#loginForm')[0].reset()
+    }
+}
+
+async function deleteUser(userLoginRequest) {
+    try {
+        const deleteUserInfo = await axios.delete(`http://localhost:3001/users/deleteuser/${userLoginRequest}`)
+        //console.log(`${userLoginRequest}'s account and data has been deleted`)
+        alert(`${userLoginRequest}'s account and calendar has been deleted!`)
+    } catch (error) {
+        if(error.response && error.response.status === 500) {
+            console.log(`It didn't work`)
+        }
+    }
 }
 
 // SELECT DAY MODAL

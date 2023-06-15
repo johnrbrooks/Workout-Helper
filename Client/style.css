@@ -250,6 +250,24 @@ body {
     background-color: #66e03a;
 }
 
+.delete-account-button {
+    padding: 0.5rem 2rem;
+    background-color: red;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.delete-account-button:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+    background-color: rgb(255, 81, 81);
+}
+
 .back-arrow {
     padding: 0.5rem 16rem;
     margin-bottom: 2rem;

@@ -23,15 +23,6 @@ const createCalendar = async (req, res) => {
     }
 }
 
-//Update function needs to receive...
-//user_username (to know which calendar to update)
-//day (the key to add the object to)
-//exercise (to know what object to add to the calendar)
-
-//user_username
-//day
-//exercise
-
 const addToCalendar = async (req, res) => {
     try {
         const { updateRequestInfo } = req.params
