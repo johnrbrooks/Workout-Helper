@@ -276,6 +276,7 @@ const closeWindowButton = document.querySelector('#closeWindowButton')
 
 async function getCalendarData() {
     let user = currentUser.username
+    //console.log(user)
     const getCalendarData = await axios.get(`http://localhost:3001/calendars/${user}`)
     //console.log(getCalendarData)
     const calendar = getCalendarData.data
@@ -312,10 +313,12 @@ function populateExercises(calendar, dayId) {
     let exerciseArray = calendar[dayId]
 
     const existingItems = parentDiv.querySelectorAll('.item-to-clear')
-    if(existingItems.length > 0) {
-        return;
-    } else {
+
+    const existingExerciseNames = Array.from(existingItems).map(
+        (item) => item.querySelector('.exercise-item-name').innerHTML
+    )
         exerciseArray.forEach((exercise, index) => {
+            if (!existingExerciseNames.includes(exercise.name)) {
             //create Div
             const exerciseContainer = document.createElement('div')
             exerciseContainer.classList.add('exercise-container')
@@ -331,11 +334,10 @@ function populateExercises(calendar, dayId) {
             optionsButton.classList.add('more-options-button')
             exerciseContainer.appendChild(optionsButton)
             optionsButton.innerHTML = '...'
-        })
-    }   
+        }})
     activateOptionsButtons()
     activateExerciseInfoButtons()
-}
+}    
 
 let exerciseToEdit;
 let exerciseToRemove;
@@ -455,7 +457,7 @@ let selectedMuscle;
 muscleGroupButtons.forEach(button => {
     button.addEventListener('click', (e) => {
         selectedMuscle = e.target.id
-        console.log(selectedMuscle)
+        //console.log(selectedMuscle)
         switch(selectedMuscle) {
             case 'chest':
                 clearMainPages()
