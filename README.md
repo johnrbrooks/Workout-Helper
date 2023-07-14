@@ -1,17 +1,17 @@
 # My Fitness Calendar
-A full-stack workout manager app!
+A full-stack workout management app!
 
 ![My Fitness Calendar](https://github.com/quark934/Workout-Helper/assets/130618148/40aa6808-0bc4-41a9-b59e-2581ff1c8d3d)
 
 ## Technologies Used
 
 ### Front-end
-Languages: HTML5, CSS3, Vanilla JS
+Languages: HTML5, CSS3, Vanilla JS<br>
 Frameworks: jQuery
 
 ### Back-end
-Languages: Vanilla JS
-Frameworks: Mongoose
+Languages: Vanilla JS<br>
+Frameworks: Mongoose, Express<br>
 Database: MongoDB
 
 ## WireFrame
@@ -29,9 +29,10 @@ Database: MongoDB
 3. Exercises
 
 ## Next Steps
-1. Allow the user to rearrrange the order of exercises on the calendar
+1. Allow the user to rearrange the order of exercises on the calendar
 2. Allow the user to add their own exercises to the database
 3. Allow the user to re-arrange by clicking and dragging the exercise elements within the calendar
+4. Encrypt passwords in database using bcrypt
 
 
 
