@@ -1,15 +1,22 @@
 const mongoose = require('mongoose')
+const { MONGO_PW } = require('../config')
+
+let MONGODB_URI = `mongodb+srv://quark934:${MONGO_PW}@myfitnessplanner.jgvzdwg.mongodb.net/?retryWrites=true&w=majority`
 
 mongoose
-  .connect('mongodb://127.0.0.1:27017/exerciseDatabase') 
+  .connect(MONGODB_URI) 
   .then(() => {
-    console.log('Successfully connected to MongoDB.')
+    console.log('Successfully connected to remote MongoDB.')
   })
   .catch((e) => {
     console.error('Connection error', e.message)
   })
 
-mongoose.set('debug', true)
+mongoose.set('debug', false)
+mongoose.connection.on(
+  "error",
+  console.error.bind(console, "MongoDB Connection Error:")
+)
 const db = mongoose.connection
 
-module.exports = db
+module.exports = mongoose.connection
