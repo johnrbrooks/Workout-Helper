@@ -44,7 +44,7 @@ async function validateUserLogin(user, password) {
     const userLoginRequest = user
     const passwordLoginRequest = password
     try{
-        const checkLoginInfo = await axios.get(`http://localhost:3001/users/login/${userLoginRequest}-${passwordLoginRequest}`)
+        const checkLoginInfo = await axios.get(`/api/users/login/${userLoginRequest}-${passwordLoginRequest}`)
         if(checkLoginInfo) {
             //console.log('Login Sucessful!')
             currentUser = checkLoginInfo.data
@@ -108,7 +108,7 @@ function createNewUser(newName, newUsername, newPassword) {
 
 async function validateNewUser(newUser) {
     const usernameRequest = newUser.username
-    const checkUsername = await axios.get(`http://localhost:3001/users/${usernameRequest}`)
+    const checkUsername = await axios.get(`/api/users/${usernameRequest}`)
     if(checkUsername.data.length === 0) {
         addNewUser(newUser)
     } else {
@@ -117,7 +117,7 @@ async function validateNewUser(newUser) {
 }
 
 async function addNewUser(newUser) {
-    postNewUserToDB = await axios.post('http://localhost:3001/users/createuser', newUser)
+    postNewUserToDB = await axios.post('/api/users/createuser', newUser)
     let calendar_id = newUser.username
     let newCalendar = {
         user_username: `${calendar_id}`,
@@ -129,7 +129,7 @@ async function addNewUser(newUser) {
         saturday: [],
         sunday: [],
     }
-    createUserCalendar = await axios.post('http://localhost:3001/calendars/createcalendar', newCalendar)
+    createUserCalendar = await axios.post('/api/calendars/createcalendar', newCalendar)
     alert('Your user and calendar have been created!')
     $('.create-account-page').css('display', 'none')
     $('.user-login-page').css('display', 'flex')
@@ -155,7 +155,7 @@ async function validateUserDeletion(user, password) {
     const userLoginRequest = user
     const passwordLoginRequest = password
     try {
-        const checkLoginInfo = await axios.get(`http://localhost:3001/users/login/${userLoginRequest}-${passwordLoginRequest}`)
+        const checkLoginInfo = await axios.get(`/api/users/login/${userLoginRequest}-${passwordLoginRequest}`)
         if(checkLoginInfo) {
             //console.log('User Exists')
             deleteUser(userLoginRequest)
@@ -173,7 +173,7 @@ async function validateUserDeletion(user, password) {
 
 async function deleteUser(userLoginRequest) {
     try {
-        const deleteUserInfo = await axios.delete(`http://localhost:3001/users/deleteuser/${userLoginRequest}`)
+        const deleteUserInfo = await axios.delete(`/api/users/deleteuser/${userLoginRequest}`)
         //console.log(`${userLoginRequest}'s account and data has been deleted`)
         alert(`${userLoginRequest}'s account and calendar has been deleted!`)
     } catch (error) {
@@ -205,7 +205,7 @@ function collectInfo(event) {
 }
 
 async function addToCalendar(user, day, exercise) {
-    const addItemToCalendar = await axios.put(`http://localhost:3001/calendars/add/${user}@${day}@${exercise}`)
+    const addItemToCalendar = await axios.put(`/api/calendars/add/${user}@${day}@${exercise}`)
     if(addItemToCalendar) {
         //console.log(addItemToCalendar)
     }
@@ -277,7 +277,7 @@ const closeWindowButton = document.querySelector('#closeWindowButton')
 async function getCalendarData() {
     let user = currentUser.username
     //console.log(user)
-    const getCalendarData = await axios.get(`http://localhost:3001/calendars/${user}`)
+    const getCalendarData = await axios.get(`/api/calendars/${user}`)
     //console.log(getCalendarData)
     const calendar = getCalendarData.data
     getExercises(calendar)
@@ -365,7 +365,7 @@ function activateExerciseInfoButtons() {
 
 async function showExerciseInfo(event) {
     searchTarget = event.target.innerHTML
-    const getExerciseInfo = await axios.get(`http://localhost:3001/exercises/${searchTarget}`)
+    const getExerciseInfo = await axios.get(`/api/exercises/${searchTarget}`)
     //console.log(getExerciseInfo)
 
         let exerciseData = getExerciseInfo.data
@@ -435,7 +435,7 @@ function markIncomplete() {
 
 async function deleteFromCalendar() {
     user = currentUser.username
-    const removeItemFromCalendar = await axios.put(`http://localhost:3001/calendars/remove/${user}@${dayOfExercise}@${exerciseToRemove}`)
+    const removeItemFromCalendar = await axios.put(`/api/calendars/remove/${user}@${dayOfExercise}@${exerciseToRemove}`)
     if(removeItemFromCalendar) {
         //console.log(removeItemFromCalendar)
         hideOptions()
@@ -515,7 +515,7 @@ let selectedExercise;
 async function showChest() {
     [armsContainer, shouldersContainer, backContainer, legsContainer, absContainer].forEach(container => container.style.display = 'none');
     chestContainer.style.display = 'flex'
-    const getChestExercises = await axios.get('http://localhost:3001/exercises/chest')
+    const getChestExercises = await axios.get('/api/exercises/chest')
 
     $('.day-select-modal').hide()
 
@@ -573,7 +573,7 @@ async function showChest() {
         instructionLink.addEventListener('click', async (e) => {
             selectedExercise = e.target
             identifier = selectedExercise.previousElementSibling.innerText
-            const getExerciseData = await axios.get(`http://localhost:3001/exercises/${identifier}`)
+            const getExerciseData = await axios.get(`/api/exercises/${identifier}`)
 
             let exerciseData = getExerciseData.data
 
@@ -623,7 +623,7 @@ async function showArms() {
     [chestContainer, shouldersContainer, backContainer, legsContainer, absContainer].forEach(container => container.style.display = 'none');
     armsContainer.style.display = 'flex'
 
-    const getArmExercises = await axios.get('http://localhost:3001/exercises/arms')
+    const getArmExercises = await axios.get('/api/exercises/arms')
 
     $('.day-select-modal').hide()
 
@@ -681,7 +681,7 @@ async function showArms() {
         instructionLink.addEventListener('click', async (e) => {
             selectedExercise = e.target
             identifier = selectedExercise.previousElementSibling.innerText
-            const getExerciseData = await axios.get(`http://localhost:3001/exercises/${identifier}`)
+            const getExerciseData = await axios.get(`/api/exercises/${identifier}`)
 
             let exerciseData = getExerciseData.data
 
@@ -731,7 +731,7 @@ async function showShoulders() {
     [armsContainer, chestContainer, backContainer, legsContainer, absContainer].forEach(container => container.style.display = 'none');
     shouldersContainer.style.display = 'flex'
 
-    const getShoulderExercises = await axios.get('http://localhost:3001/exercises/shoulders')
+    const getShoulderExercises = await axios.get('/api/exercises/shoulders')
 
     $('.day-select-modal').hide()
 
@@ -789,7 +789,7 @@ const exerciseDivs = document.querySelectorAll('.exerciseDiv')
         instructionLink.addEventListener('click', async (e) => {
             selectedExercise = e.target
             identifier = selectedExercise.previousElementSibling.innerText
-            const getExerciseData = await axios.get(`http://localhost:3001/exercises/${identifier}`)
+            const getExerciseData = await axios.get(`/api/exercises/${identifier}`)
 
             let exerciseData = getExerciseData.data
 
@@ -839,7 +839,7 @@ async function showBack() {
     [armsContainer, chestContainer, shouldersContainer, legsContainer, absContainer].forEach(container => container.style.display = 'none');
     backContainer.style.display = 'flex'
 
-    const getBackExercises = await axios.get('http://localhost:3001/exercises/back')
+    const getBackExercises = await axios.get('/api/exercises/back')
 
     $('.day-select-modal').hide()
 
@@ -897,7 +897,7 @@ const exerciseDivs = document.querySelectorAll('.exerciseDiv')
         instructionLink.addEventListener('click', async (e) => {
             selectedExercise = e.target
             identifier = selectedExercise.previousElementSibling.innerText
-            const getExerciseData = await axios.get(`http://localhost:3001/exercises/${identifier}`)
+            const getExerciseData = await axios.get(`/api/exercises/${identifier}`)
 
             let exerciseData = getExerciseData.data
 
@@ -947,7 +947,7 @@ async function showLegs() {
     [chestContainer, shouldersContainer, backContainer, armsContainer, absContainer].forEach(container => container.style.display = 'none');
     legsContainer.style.display = 'flex'
 
-    const getLegExercises = await axios.get('http://localhost:3001/exercises/legs')
+    const getLegExercises = await axios.get('/api/exercises/legs')
 
     $('.day-select-modal').hide()
 
@@ -1005,7 +1005,7 @@ const exerciseDivs = document.querySelectorAll('.exerciseDiv')
         instructionLink.addEventListener('click', async (e) => {
             selectedExercise = e.target
             identifier = selectedExercise.previousElementSibling.innerText
-            const getExerciseData = await axios.get(`http://localhost:3001/exercises/${identifier}`)
+            const getExerciseData = await axios.get(`/api/exercises/${identifier}`)
 
             let exerciseData = getExerciseData.data
 
@@ -1055,7 +1055,7 @@ async function showAbs() {
     [chestContainer, shouldersContainer, backContainer, legsContainer, armsContainer].forEach(container => container.style.display = 'none');
     absContainer.style.display = 'flex'
 
-    const getAbExercises = await axios.get('http://localhost:3001/exercises/abs')
+    const getAbExercises = await axios.get('/api/exercises/abs')
 
     $('.day-select-modal').hide()
 
@@ -1113,7 +1113,7 @@ const exerciseDivs = document.querySelectorAll('.exerciseDiv')
         instructionLink.addEventListener('click', async (e) => {
             selectedExercise = e.target
             identifier = selectedExercise.previousElementSibling.innerText
-            const getExerciseData = await axios.get(`http://localhost:3001/exercises/${identifier}`)
+            const getExerciseData = await axios.get(`/api/exercises/${identifier}`)
 
             let exerciseData = getExerciseData.data
 

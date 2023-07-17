@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const PORT = process.env.PORT || 3001
-const db = require('./db')
+const db = require('./DB/index')
 const { Exercises, Users } = require('./Models')
 const AppRouter = require('./Routes/AppRouter')
 
@@ -14,5 +14,5 @@ app.use(express.urlencoded({ extended: true }))
 //Routes
 
 app.get('/', (req, res) => {res.send('Server works!')})
-app.use('/', AppRouter)
+app.use('/api', AppRouter)
 app.listen(PORT, () => {console.log(`Express server listening on port ${PORT}`)})
