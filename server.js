@@ -13,6 +13,11 @@ app.use(express.urlencoded({ extended: true }))
 
 //Routes
 
-app.get('/', (req, res) => {res.send('Server works!')})
 app.use('/api', AppRouter)
+
+app.use(express.static(path.join(__dirname, 'Client')))
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'Client', 'index.html'))
+})
 app.listen(PORT, () => {console.log(`Express server listening on port ${PORT}`)})
