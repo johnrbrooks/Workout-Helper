@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const path = require('path')
 const PORT = process.env.PORT || 3001
 const db = require('./DB/index')
 const { Exercises, Users } = require('./Models')
