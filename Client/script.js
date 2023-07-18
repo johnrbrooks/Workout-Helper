@@ -44,7 +44,7 @@ async function validateUserLogin(user, password) {
     const userLoginRequest = user
     const passwordLoginRequest = password
     try{
-        const checkLoginInfo = await axios.get(`/api/users/login/${userLoginRequest}-${passwordLoginRequest}`)
+        const checkLoginInfo = await axios.get(`${url}/api/users/login/${userLoginRequest}-${passwordLoginRequest}`)
         if(checkLoginInfo) {
             //console.log('Login Sucessful!')
             currentUser = checkLoginInfo.data
@@ -491,7 +491,6 @@ muscleGroupButtons.forEach(button => {
 
 // EXERCISE DISPLAY PAGES
 
-let url = 'https://localhost:3001'
 
 function clearMainPages() {
     createAccountPage.style.display = 'none'
