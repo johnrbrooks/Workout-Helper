@@ -1,5 +1,3 @@
-const baseURL = 'myfitnessplanner-production.up.railway.app'
-
 // USER LOGIN AND CREATE ACCOUNT PAGE
 
 $('#createAccountButton').click(function goToCreateAccount() {
