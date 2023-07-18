@@ -1,7 +1,9 @@
 const mongoose = require('mongoose')
-const { MONGO_PW } = require('../config')
+const dotenv = require('dotenv')
 
-let MONGODB_URI = `mongodb+srv://quark934:${MONGO_PW}@myfitnessplanner.jgvzdwg.mongodb.net/?retryWrites=true&w=majority`
+dotenv.config()
+
+let MONGODB_URI = process.env.MONGODB_URI
 
 mongoose
   .connect(MONGODB_URI) 
