@@ -4,7 +4,9 @@ const dotenv = require('dotenv')
 
 dotenv.config()
 
-const MONGODB_URI = `mongodb+srv://quark934:${MONGO_PW}@myfitnessplanner.jgvzdwg.mongodb.net/?retryWrites=true&w=majority`
+const MONGODB_URI = process.env.MONGODB_URI
+
+//const MONGODB_URI = `mongodb+srv://quark934:${MONGO_PW}@myfitnessplanner.jgvzdwg.mongodb.net/?retryWrites=true&w=majority`
 
 mongoose
   .connect(MONGODB_URI) 
