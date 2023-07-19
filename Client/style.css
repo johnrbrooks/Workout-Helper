@@ -205,6 +205,7 @@ body {
     height: 2rem;
     font-family: 'M PLUS Rounded 1c', sans-serif;
     font-size: 1.5rem;
+    padding-left: 5px;
 }
 
 .buttons-container {
@@ -215,7 +216,7 @@ body {
 }
 
 .login-button {
-    padding: 0.7rem 4rem;
+    padding: 0.5rem 4rem;
     background-color: #0C2AC7;
     border: none;
     border-radius: 10px;
@@ -692,13 +693,38 @@ body {
 }
 
 @media screen and (max-width: 500px) {
+
+    .user-login-page {
+        top: 0;
+        left: 100%;
+        width: 100%;
+        min-height: 80vh;
+        background: linear-gradient(45deg, rgba(12, 12, 12, 0.3), rgba(59, 59, 59, 0.3));
+    }
+
+    .create-account-page {
+        top: 0;
+        left: 100%;
+        width: 100%;
+        min-height: 80vh;
+        background: linear-gradient(45deg, rgba(12, 12, 12, 0.3), rgba(59, 59, 59, 0.3));
+    }
+
     .username-label {
         font-size: 1rem;
     }
+
+    .login-form {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        place-items: center center;
+        margin-right: 0;
+    }
     
     .username-input {
-        height: 1.5rem;
-        font-size: 1rem;
+        height: 1.75rem;
+        font-size: 1.25rem;
+        width: 90%;
     }
     
     .login-button {
@@ -720,15 +746,10 @@ body {
         padding: 0;
     }
 
-    .login-form {
-        margin-right: 2.25rem;
-        margin-bottom: 1rem;
-    }
-
     .back-arrow {
         padding: 0.5rem 12rem;
         margin-top: 0.5rem;
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
     }
 
     .exercises-groups-title {
