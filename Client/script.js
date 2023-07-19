@@ -41,7 +41,7 @@ function checkLoginForm() {
 }
 
 async function validateUserLogin(user, password) {
-    const userLoginRequest = user
+    const userLoginRequest = user.toLowerCase()
     const passwordLoginRequest = password
     try{
         const checkLoginInfo = await axios.get(`/api/users/login/${userLoginRequest}-${passwordLoginRequest}`)
